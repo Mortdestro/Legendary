@@ -10,10 +10,11 @@ namespace LegendaryTestExpansion
     {
         public static readonly Module Module = new Module
         {
-            BadCards = new Dictionary<string, List<BadCard>>
+            BadCards = new Dictionary<string, List<IBadCard>>
             {
-                { "Wound", Enumerable.Repeat<BadCard>(new BadCardX(), 15).ToList()}
-            }
+                { "Wound", Enumerable.Repeat<IBadCard>(new BadCardX(), 15).ToList()}
+            },
+            Bystanders = Enumerable.Repeat<IBystander>(new BystanderX(), 4).ToList()
         };
     }
 }

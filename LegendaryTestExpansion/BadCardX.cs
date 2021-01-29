@@ -3,19 +3,19 @@ using System;
 
 namespace LegendaryTestExpansion
 {
-    public class BadCardX : BadCard
+    public class BadCardX : IBadCard
     {
-        public override void Healing(GameState gameState)
+        public void Healing(Player player, GameState gameState)
         {
-            if (gameState.CurrentTurn.Player.Hand.Remove(this))
+            if (player.Hand.Remove(this))
             {
-                gameState.CurrentTurn.Player.DiscardPile.Add(this);
+                player.DiscardPile.Add(this);
             }
         }
 
-        public override bool HealingCondition(GameState gameState)
+        public bool HealingCondition(Player player, GameState gameState)
         {
-            return true;
+            return player == gameState.CurrentTurn.Player;
         }
     }
 }

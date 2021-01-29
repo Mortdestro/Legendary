@@ -3,11 +3,10 @@ using LegendaryEngine;
 
 namespace LegendaryHeroes
 {
-    public class Wound : BadCard
+    public class Wound : IBadCard
     {
-        public override void Healing(GameState gameState)
+        public void Healing(Player player, GameState gameState)
         {
-            Player player = gameState.CurrentTurn.Player;
             foreach (ICard card in player.Hand)
             {
                 if (card is Wound)
@@ -20,8 +19,9 @@ namespace LegendaryHeroes
             }
         }
 
-        public override bool HealingCondition(GameState gameState)
+        public bool HealingCondition(Player player, GameState gameState)
         {
+            if (player != gameState.CurrentTurn.Player) return false;
             throw new NotImplementedException();
         }
     }

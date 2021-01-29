@@ -34,8 +34,9 @@ namespace Legendary
         {
             ClearLabels();
 
-            int offsetY = 0;
+            string cards = "";
 
+            int offsetY = 0;
             foreach (string type in GameState.BadCardStacks.Keys)
             {
                 BadCardLabels.Add(new Label
@@ -47,12 +48,11 @@ namespace Legendary
                     Text = type
                 });
 
-                string cards = "";
-                foreach(ICard x in GameState.BadCardStacks[type])
+                foreach(ICard card in GameState.BadCardStacks[type])
                 {
-                    if (x is Wound)
+                    if (card is Wound)
                         cards += "W";
-                    if (x is BadCardX)
+                    if (card is BadCardX)
                         cards += "X";
                 }
 
@@ -60,7 +60,7 @@ namespace Legendary
                 {
                     AutoSize = true,
                     Location = new System.Drawing.Point(BAD_CARD_LABELS_START_X + 100, BAD_CARD_LABELS_START_Y + offsetY),
-                    Name = $"labelBadCards{type}Count",
+                    Name = $"labelBadCards{type}Stack",
                     TabIndex = 200 + offsetY / 25,
                     Text = cards
                 });
@@ -72,6 +72,16 @@ namespace Legendary
             {
                 Controls.Add(label);
             }
+
+            cards = "";
+            foreach (ICard card in GameState.BystanderStack)
+            {
+                if (card is BystanderX)
+                    cards += "X";
+                else if (card is Bystander)
+                    cards += "B";
+            }
+            labelBystanderStack.Text = cards;
         }
 
         private void ClearLabels()
@@ -81,6 +91,8 @@ namespace Legendary
                 Controls.Remove(x);
             }
             BadCardLabels.Clear();
+
+            labelBystanderStack.Text = "";
         }
 
         private void ValidateSetUpButton()

@@ -38,6 +38,8 @@ namespace Legendary
             this.labelExpansions = new System.Windows.Forms.Label();
             this.checkBoxTestExpansion = new System.Windows.Forms.CheckBox();
             this.labelBadCards = new System.Windows.Forms.Label();
+            this.labelBystanders = new System.Windows.Forms.Label();
+            this.labelBystanderStack = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonSetUp
@@ -134,11 +136,30 @@ namespace Legendary
             this.labelBadCards.TabIndex = 7;
             this.labelBadCards.Text = "Bad Cards";
             // 
+            // labelBystanders
+            // 
+            this.labelBystanders.AutoSize = true;
+            this.labelBystanders.Location = new System.Drawing.Point(13, 193);
+            this.labelBystanders.Name = "labelBystanders";
+            this.labelBystanders.Size = new System.Drawing.Size(59, 13);
+            this.labelBystanders.TabIndex = 8;
+            this.labelBystanders.Text = "Bystanders";
+            // 
+            // labelBystanderStack
+            // 
+            this.labelBystanderStack.AutoSize = true;
+            this.labelBystanderStack.Location = new System.Drawing.Point(113, 193);
+            this.labelBystanderStack.Name = "labelBystanderStack";
+            this.labelBystanderStack.Size = new System.Drawing.Size(0, 13);
+            this.labelBystanderStack.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelBystanderStack);
+            this.Controls.Add(this.labelBystanders);
             this.Controls.Add(this.labelBadCards);
             this.Controls.Add(this.checkBoxTestExpansion);
             this.Controls.Add(this.labelExpansions);
@@ -166,6 +187,8 @@ namespace Legendary
         private System.Windows.Forms.Label labelExpansions;
         private System.Windows.Forms.CheckBox checkBoxTestExpansion;
         private System.Windows.Forms.Label labelBadCards;
+        private System.Windows.Forms.Label labelBystanders;
+        private System.Windows.Forms.Label labelBystanderStack;
     }
 }
 

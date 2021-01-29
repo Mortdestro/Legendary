@@ -55,6 +55,7 @@ namespace LegendaryEngine
             Module module = Module.Merge(modules);
 
             PopulateBadCardStacks(module);
+            PopulateBystanderStack(module);
         }
 
         private void PopulateBadCardStacks(Module module)
@@ -64,6 +65,12 @@ namespace LegendaryEngine
                 BadCardStacks[type] = new List<ICard>(module.BadCards[type]);
                 BadCardStacks[type].Shuffle();
             }
+        }
+
+        private void PopulateBystanderStack(Module module)
+        {
+                BystanderStack = new List<ICard>(module.Bystanders);
+                BystanderStack.Shuffle();
         }
 
         public class HQ
@@ -89,9 +96,11 @@ namespace LegendaryEngine
 
         public class Turn
         {
-            public Player Player;
-            public Dictionary<string, int> ClassesPlayed;
-            public Dictionary<string, int> TeamsPlayed;
+            public Player Player { get; set; }
+            public int RecruitPoints { get; set; }
+            public int AttackPoints { get; set; }
+            public Dictionary<string, int> ClassesPlayed { get; set; }
+            public Dictionary<string, int> TeamsPlayed { get; set; }
         }
     }
 }
