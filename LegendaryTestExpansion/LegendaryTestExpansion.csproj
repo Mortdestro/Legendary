@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LegendaryBase\LegendaryHeroes.csproj" />
+    <ProjectReference Include="..\LegendaryEngine\LegendaryEngine.csproj" />
+  </ItemGroup>
+
+</Project>
