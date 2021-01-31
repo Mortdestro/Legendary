@@ -1,13 +1,14 @@
 ﻿using LegendaryEngine.CardInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LegendaryEngine
 {
     public class GameState
     {
-        public Player[] Players { get; set; }
+        public List<Player> Players { get; set; }
         public IMastermind Mastermind { get; set; }
         public IScheme Scheme { get; set; }
         public Turn CurrentTurn { get; set; }
@@ -25,7 +26,7 @@ namespace LegendaryEngine
         public GameState(int numPlayers)
         {
 
-            Players = new Player[numPlayers];
+            Players = new List<Player>();
             HQState = new HQ();
             CityState = new City();
             HeroDeck = new List<ICard>();
@@ -36,6 +37,19 @@ namespace LegendaryEngine
             MastermindTactics = new List<ICard>();
             KOPile = new List<ICard>();
             EscapePile = new List<ICard>();
+
+            for (int i = 0; i < numPlayers; i++)
+            {
+                Players.Add(new Player
+                {
+                    Name = $"Player {i + 1}",
+                    Deck = new List<ICard>(),
+                    DiscardPile = new List<ICard>(),
+                    Hand = new List<ICard>(),
+                    PlayedCards = new List<ICard>(),
+                    VictoryPile = new List<ICard>()
+                });
+            }
         }
 
         /*
@@ -51,13 +65,14 @@ namespace LegendaryEngine
         }
         */
 
-        public void PopulateStacks(List<Module> modules)
+        public void PopulateStacks(List<Module> modules, SelectModule selectModule)
         {
             Module module = Module.Merge(modules);
 
             PopulateBadCardStacks(module);
             PopulateBystanderStack(module);
             PopulateStandardHeroStacks(module);
+            PopulatePlayerDecks(modules, selectModule);
         }
 
         private void PopulateBadCardStacks(Module module)
@@ -85,6 +100,20 @@ namespace LegendaryEngine
             {
                 StandardHeroStacks[type] = new List<ICard>(module.StandardHeroes[type]);
                 StandardHeroStacks[type].Shuffle();
+            }
+        }
+
+        public delegate Module SelectModule(List<Module> x, string prompt = "");
+
+        public void PopulatePlayerDecks(List<Module> modules, SelectModule selectModule)
+        {
+            List<Module> baseModules = modules.Where(m => m.StartingCards != null && m.StartingCards.Count > 0).ToList();
+            Module module = selectModule(baseModules, "Which starting decks should be used?");
+
+            foreach (Player player in Players)
+            {
+                player.Deck.AddRange(module.StartingCards);
+                player.Deck.Shuffle();
             }
         }
 

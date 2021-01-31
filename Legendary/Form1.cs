@@ -20,6 +20,7 @@ namespace Legendary
         GameState GameState { get; set; }
         List<Label> BadCardLabels { get; set; }
         List<Label> StandardHeroLabels { get; set; }
+        List<Label> PlayerDeckLabels { get; set; }
 
         public Form1()
         {
@@ -28,6 +29,7 @@ namespace Legendary
 
             BadCardLabels = new List<Label>();
             StandardHeroLabels = new List<Label>();
+            PlayerDeckLabels = new List<Label>();
         }
 
         protected void InitializeForm()
@@ -40,6 +42,8 @@ namespace Legendary
             ClearLabels();
 
             string cards;
+
+            // Bad Cards //
 
             int offsetY = 0;
             foreach (string type in GameState.BadCardStacks.Keys)
@@ -79,6 +83,8 @@ namespace Legendary
             {
                 Controls.Add(label);
             }
+
+            // Standard Heroes //
 
             int standardHeroLabelsStartX = BAD_CARD_LABELS_START_X;
             int standardHeroLabelsStartY = BAD_CARD_LABELS_START_Y + LABELS_SPACING_Y * (GameState.BadCardStacks.Keys.Count);
@@ -124,6 +130,54 @@ namespace Legendary
                 Controls.Add(label);
             }
 
+            // Player Decks //
+
+            int playerDeckLabelsStartX = standardHeroLabelsStartX;
+            int playerDeckLabelsStartY = standardHeroLabelsStartY + LABELS_SPACING_Y * (GameState.StandardHeroStacks.Keys.Count + 1);
+
+            labelPlayerDecks.Location = new System.Drawing.Point(playerDeckLabelsStartX, playerDeckLabelsStartY);
+
+            offsetY = LABELS_SPACING_Y;
+            foreach (Player player in GameState.Players)
+            {
+                cards = "";
+
+                PlayerDeckLabels.Add(new Label
+                {
+                    AutoSize = true,
+                    Location = new System.Drawing.Point(playerDeckLabelsStartX, playerDeckLabelsStartY + offsetY),
+                    Name = $"labelPlayerDecks{player.Name.Replace(" ", "")}",
+                    TabIndex = 500 + offsetY / LABELS_SPACING_Y,
+                    Text = player.Name
+                });
+
+                foreach (ICard card in player.Deck)
+                {
+                    if (card is ShieldAgent)
+                        cards += "A";
+                    if (card is ShieldTrooper)
+                        cards += "T";
+                }
+
+                PlayerDeckLabels.Add(new Label
+                {
+                    AutoSize = true,
+                    Location = new System.Drawing.Point(playerDeckLabelsStartX + LABELS_SPACING_X, playerDeckLabelsStartY + offsetY),
+                    Name = $"label{player.Name.Replace(" ", "")}Deck",
+                    TabIndex = 600 + offsetY / LABELS_SPACING_Y,
+                    Text = cards
+                });
+
+                offsetY += LABELS_SPACING_Y;
+            }
+
+            foreach (Label label in PlayerDeckLabels)
+            {
+                Controls.Add(label);
+            }
+
+            // Bystanders //
+
             cards = "";
             foreach (ICard card in GameState.BystanderStack)
             {
@@ -150,6 +204,13 @@ namespace Legendary
                 Controls.Remove(label);
             }
             StandardHeroLabels.Clear();
+
+            // Player Decks
+            foreach (Label label in PlayerDeckLabels)
+            {
+                Controls.Remove(label);
+            }
+            PlayerDeckLabels.Clear();
 
             labelBystanderStack.Text = "";
         }
@@ -180,7 +241,23 @@ namespace Legendary
             }
 
             GameState = new GameState(int.Parse(comboBoxPlayers.SelectedItem.ToString()));
-            GameState.PopulateStacks(modules);
+            GameState.PopulateStacks(modules, SelectModule);
+        }
+
+        private Module SelectModule(List<Module> modules, string prompt)
+        {
+            Module module = null;
+
+            using (ModuleSelectForm moduleForm = new ModuleSelectForm(modules, prompt: prompt))
+            {
+                DialogResult result = moduleForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    module = moduleForm.SelectedModule;
+                }
+            }
+
+            return module;
         }
 
         private void checkBoxHeroes_CheckedChanged(object sender, EventArgs e)

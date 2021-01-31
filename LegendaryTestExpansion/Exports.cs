@@ -11,6 +11,7 @@ namespace LegendaryTestExpansion
     {
         public static readonly Module Module = new Module
         {
+            Name = "Test Expansion",
             BadCards = new Dictionary<string, List<IBadCard>>
             {
                 { "Wound", Enumerable.Repeat<IBadCard>(new BadCardX(), 15).ToList() }

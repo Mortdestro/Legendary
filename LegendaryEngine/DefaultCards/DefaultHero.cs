@@ -11,6 +11,7 @@ namespace LegendaryEngine.DefaultCards
         public virtual float PrintedCost => 0;
         public virtual float PrintedRecruitPoints => 0;
         public virtual string RulesText => null;
+        public virtual string FlavorText => null;
         public virtual string Title => "Hero";
         public virtual string Subtitle => "Hero";
         public virtual string[] PrintedClasses => new string[0];
