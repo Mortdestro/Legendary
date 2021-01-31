@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LegendaryEngine.CardInterfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

@@ -1,21 +1,20 @@
 ﻿using LegendaryEngine;
+using LegendaryEngine.CardInterfaces;
+using LegendaryEngine.DefaultCards;
 using System;
 
 namespace LegendaryTestExpansion
 {
-    public class BadCardX : IBadCard
+    public class BadCardX : DefaultBadCard
     {
-        public void Healing(Player player, GameState gameState)
+        public override string Title => "Bad X";
+
+        public override void Healing(Player player, GameState gameState)
         {
             if (player.Hand.Remove(this))
             {
                 player.DiscardPile.Add(this);
             }
-        }
-
-        public bool HealingCondition(Player player, GameState gameState)
-        {
-            return player == gameState.CurrentTurn.Player;
         }
     }
 }

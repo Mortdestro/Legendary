@@ -1,4 +1,5 @@
 ﻿using LegendaryEngine;
+using LegendaryEngine.CardInterfaces;
 using LegendaryHeroes;
 using LegendaryTestExpansion;
 using System;
@@ -12,10 +13,13 @@ namespace Legendary
     public partial class Form1 : Form
     {
         const int BAD_CARD_LABELS_START_X = 13;
-        const int BAD_CARD_LABELS_START_Y = 223;
+        const int BAD_CARD_LABELS_START_Y = 243;
+        const int LABELS_SPACING_X = 100;
+        const int LABELS_SPACING_Y = 25;
 
         GameState GameState { get; set; }
         List<Label> BadCardLabels { get; set; }
+        List<Label> StandardHeroLabels { get; set; }
 
         public Form1()
         {
@@ -23,6 +27,7 @@ namespace Legendary
             InitializeForm();
 
             BadCardLabels = new List<Label>();
+            StandardHeroLabels = new List<Label>();
         }
 
         protected void InitializeForm()
@@ -34,17 +39,19 @@ namespace Legendary
         {
             ClearLabels();
 
-            string cards = "";
+            string cards;
 
             int offsetY = 0;
             foreach (string type in GameState.BadCardStacks.Keys)
             {
+                cards = "";
+
                 BadCardLabels.Add(new Label
                 {
                     AutoSize = true,
                     Location = new System.Drawing.Point(BAD_CARD_LABELS_START_X, BAD_CARD_LABELS_START_Y + offsetY),
                     Name = $"labelBadCards{type}",
-                    TabIndex = 100 + offsetY / 25,
+                    TabIndex = 100 + offsetY / LABELS_SPACING_Y,
                     Text = type
                 });
 
@@ -59,16 +66,60 @@ namespace Legendary
                 BadCardLabels.Add(new Label
                 {
                     AutoSize = true,
-                    Location = new System.Drawing.Point(BAD_CARD_LABELS_START_X + 100, BAD_CARD_LABELS_START_Y + offsetY),
+                    Location = new System.Drawing.Point(BAD_CARD_LABELS_START_X + LABELS_SPACING_X, BAD_CARD_LABELS_START_Y + offsetY),
                     Name = $"labelBadCards{type}Stack",
-                    TabIndex = 200 + offsetY / 25,
+                    TabIndex = 200 + offsetY / LABELS_SPACING_Y,
                     Text = cards
                 });
 
-                offsetY += 25;
+                offsetY += LABELS_SPACING_Y;
             }
 
             foreach (Label label in BadCardLabels)
+            {
+                Controls.Add(label);
+            }
+
+            int standardHeroLabelsStartX = BAD_CARD_LABELS_START_X;
+            int standardHeroLabelsStartY = BAD_CARD_LABELS_START_Y + LABELS_SPACING_Y * (GameState.BadCardStacks.Keys.Count);
+
+            labelStandardHeroes.Location = new System.Drawing.Point(standardHeroLabelsStartX, standardHeroLabelsStartY);
+
+            offsetY = LABELS_SPACING_Y;
+            foreach (string type in GameState.StandardHeroStacks.Keys)
+            {
+                cards = "";
+
+                StandardHeroLabels.Add(new Label
+                {
+                    AutoSize = true,
+                    Location = new System.Drawing.Point(standardHeroLabelsStartX, standardHeroLabelsStartY + offsetY),
+                    Name = $"labelStandardHeroes{type}",
+                    TabIndex = 300 + offsetY / LABELS_SPACING_Y,
+                    Text = type
+                });
+
+                foreach (ICard card in GameState.StandardHeroStacks[type])
+                {
+                    if (card is ShieldOfficer)
+                        cards += "O";
+                    if (card is HeroX)
+                        cards += "X";
+                }
+
+                StandardHeroLabels.Add(new Label
+                {
+                    AutoSize = true,
+                    Location = new System.Drawing.Point(standardHeroLabelsStartX + LABELS_SPACING_X, standardHeroLabelsStartY + offsetY),
+                    Name = $"labelStandardHeroes{type}Stack",
+                    TabIndex = 400 + offsetY / LABELS_SPACING_Y,
+                    Text = cards
+                });
+
+                offsetY += LABELS_SPACING_Y;
+            }
+
+            foreach (Label label in StandardHeroLabels)
             {
                 Controls.Add(label);
             }
@@ -86,11 +137,19 @@ namespace Legendary
 
         private void ClearLabels()
         {
-            foreach (Label x in BadCardLabels)
+            // Bad Cards
+            foreach (Label label in BadCardLabels)
             {
-                Controls.Remove(x);
+                Controls.Remove(label);
             }
             BadCardLabels.Clear();
+
+            // Standard Heroes
+            foreach (Label label in StandardHeroLabels)
+            {
+                Controls.Remove(label);
+            }
+            StandardHeroLabels.Clear();
 
             labelBystanderStack.Text = "";
         }

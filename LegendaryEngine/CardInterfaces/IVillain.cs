@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendaryEngine
+namespace LegendaryEngine.CardInterfaces
 {
-    public class Mastermind : ICard
+    public interface IVillain : ICard
     {
-        
     }
 }

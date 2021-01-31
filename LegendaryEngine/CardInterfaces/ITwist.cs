@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendaryEngine
+namespace LegendaryEngine.CardInterfaces
 {
-    public class Hero : ICard
+    public interface ITwist : ICard
     {
     }
 }

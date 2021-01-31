@@ -40,6 +40,7 @@ namespace Legendary
             this.labelBadCards = new System.Windows.Forms.Label();
             this.labelBystanders = new System.Windows.Forms.Label();
             this.labelBystanderStack = new System.Windows.Forms.Label();
+            this.labelStandardHeroes = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonSetUp
@@ -130,7 +131,8 @@ namespace Legendary
             // labelBadCards
             // 
             this.labelBadCards.AutoSize = true;
-            this.labelBadCards.Location = new System.Drawing.Point(13, 206);
+            this.labelBadCards.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBadCards.Location = new System.Drawing.Point(13, 218);
             this.labelBadCards.Name = "labelBadCards";
             this.labelBadCards.Size = new System.Drawing.Size(56, 13);
             this.labelBadCards.TabIndex = 7;
@@ -153,11 +155,22 @@ namespace Legendary
             this.labelBystanderStack.Size = new System.Drawing.Size(0, 13);
             this.labelBystanderStack.TabIndex = 9;
             // 
+            // labelStandardHeroes
+            // 
+            this.labelStandardHeroes.AutoSize = true;
+            this.labelStandardHeroes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStandardHeroes.Location = new System.Drawing.Point(12, 243);
+            this.labelStandardHeroes.Name = "labelStandardHeroes";
+            this.labelStandardHeroes.Size = new System.Drawing.Size(87, 13);
+            this.labelStandardHeroes.TabIndex = 399;
+            this.labelStandardHeroes.Text = "Standard Heroes";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelStandardHeroes);
             this.Controls.Add(this.labelBystanderStack);
             this.Controls.Add(this.labelBystanders);
             this.Controls.Add(this.labelBadCards);
@@ -189,6 +202,7 @@ namespace Legendary
         private System.Windows.Forms.Label labelBadCards;
         private System.Windows.Forms.Label labelBystanders;
         private System.Windows.Forms.Label labelBystanderStack;
+        private System.Windows.Forms.Label labelStandardHeroes;
     }
 }
 

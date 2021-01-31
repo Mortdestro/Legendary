@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendaryEngine
+namespace LegendaryEngine.CardInterfaces
 {
     public interface IBadCard : ICard
     {

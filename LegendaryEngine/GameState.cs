@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LegendaryEngine.CardInterfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,8 +8,8 @@ namespace LegendaryEngine
     public class GameState
     {
         public Player[] Players { get; set; }
-        public Mastermind Mastermind { get; set; }
-        public Scheme Scheme { get; set; }
+        public IMastermind Mastermind { get; set; }
+        public IScheme Scheme { get; set; }
         public Turn CurrentTurn { get; set; }
         public HQ HQState { get; set; }
         public City CityState { get; set; }
@@ -56,10 +57,13 @@ namespace LegendaryEngine
 
             PopulateBadCardStacks(module);
             PopulateBystanderStack(module);
+            PopulateStandardHeroStacks(module);
         }
 
         private void PopulateBadCardStacks(Module module)
         {
+            if (module.BadCards == null) return;
+
             foreach (string type in module.BadCards.Keys)
             {
                 BadCardStacks[type] = new List<ICard>(module.BadCards[type]);
@@ -69,8 +73,19 @@ namespace LegendaryEngine
 
         private void PopulateBystanderStack(Module module)
         {
-                BystanderStack = new List<ICard>(module.Bystanders);
-                BystanderStack.Shuffle();
+            BystanderStack = new List<ICard>(module.Bystanders);
+            BystanderStack.Shuffle();
+        }
+
+        private void PopulateStandardHeroStacks(Module module)
+        {
+            if (module.StandardHeroes == null) return;
+
+            foreach (string type in module.StandardHeroes.Keys)
+            {
+                StandardHeroStacks[type] = new List<ICard>(module.StandardHeroes[type]);
+                StandardHeroStacks[type].Shuffle();
+            }
         }
 
         public class HQ

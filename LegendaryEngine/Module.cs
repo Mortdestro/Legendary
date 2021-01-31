@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using LegendaryEngine.CardInterfaces;
 
 namespace LegendaryEngine
 {
@@ -9,6 +10,7 @@ namespace LegendaryEngine
     {
         public Dictionary<string, List<IBadCard>> BadCards { get; set; }
         public List<IBystander> Bystanders { get; set; }
+        public Dictionary<string, List<IHero>> StandardHeroes { get; set; }
 
         public static Module Merge(List<Module> modules)
         {
@@ -20,40 +22,41 @@ namespace LegendaryEngine
 
             Module mergedModules = new Module
             {
-                BadCards = MergeBadCards(modules.Select(m => m.BadCards).ToList()),
-                Bystanders = MergeBystanders(modules.Select(m => m.Bystanders).ToList())
+                BadCards = MergeStacks(modules.Select(module => module.BadCards).ToList()),
+                Bystanders = MergeStack(modules.Select(module => module.Bystanders).ToList()),
+                StandardHeroes = MergeStacks(modules.Select(module => module.StandardHeroes).ToList())
             };
 
             return mergedModules;
         }
 
-        private static Dictionary<string, List<IBadCard>> MergeBadCards(List<Dictionary<string, List<IBadCard>>> allBadCards)
+        private static Dictionary<string, List<T>> MergeStacks<T>(List<Dictionary<string, List<T>>> allCards)
         {
             // Create a merged dictionary to populate
-            Dictionary<string, List<IBadCard>> mergedBadCards = new Dictionary<string, List<IBadCard>>();
+            Dictionary<string, List<T>> mergedCards = new Dictionary<string, List<T>>();
 
-            // Iterate through the bad card types
-            foreach (string type in allBadCards.SelectMany(d => d.Keys.ToList()).Distinct().ToList())
+            // Iterate through the card types
+            foreach (string type in allCards.SelectMany(stacks => stacks.Keys.ToList()).Distinct().ToList())
             {
                 // Add this type to merged dictionary
-                mergedBadCards[type] = new List<IBadCard>();
+                mergedCards[type] = new List<T>();
 
-                // Iterate through the different modules' bad cards, appending the lists to the merged dictionary
-                foreach (Dictionary<string, List<IBadCard>> badCards in allBadCards)
+                // Iterate through the different modules' cards, appending the lists to the merged dictionary
+                foreach (Dictionary<string, List<T>> cards in allCards)
                 {
-                    if (badCards.ContainsKey(type))
+                    if (cards.ContainsKey(type))
                     {
-                        mergedBadCards[type].AddRange(badCards[type]);
+                        mergedCards[type].AddRange(cards[type]);
                     }
                 }
             }
 
-            return mergedBadCards;
+            return mergedCards;
         }
 
-        private static List<IBystander> MergeBystanders(List<List<IBystander>> allBystanders)
+        private static List<T> MergeStack<T>(List<List<T>> allCards)
         {
-            return allBystanders.SelectMany(b => b).ToList();
+            return allCards.SelectMany(cards => cards).ToList();
         }
     }
 }
