@@ -7,24 +7,26 @@ namespace LegendaryEngine.DefaultCards
 {
     public class DefaultBystander : IBystander
     {
-        public virtual int PrintedVictoryPoints => 1;
-        public string Title => "Bystander";
-        public string Subtitle => null;
+        public virtual string FlavorText => null;
+        public virtual float PrintedVictoryPoints => 1;
+        public virtual string RulesText => null;
+        public virtual string Subtitle => null;
+        public virtual string Title => "Bystander";
 
-        public virtual void Capture(IVillain villain, List<ICard> source, GameState gameState)
+        public virtual void Capture(GameEngine game, IVillain villain, List<ICard> source)
         {
             throw new NotImplementedException();
         }
 
-        public virtual bool CaptureCondition(IVillain villain, List<ICard> source, GameState gameState) => true;
+        public virtual bool CaptureCondition(GameEngine game, IVillain villain, List<ICard> source) => true;
 
-        public virtual void Rescue(Player player, List<ICard> source, GameState gameState)
+        public virtual void Rescue(GameEngine game, Player player, List<ICard> source)
         {
             throw new NotImplementedException();
         }
 
-        public virtual bool RescueCondition(Player player, List<ICard> source, GameState gameState) => true;
+        public virtual bool RescueCondition(GameEngine game, Player player, List<ICard> source) => true;
 
-        public virtual int VictoryPoints(Player player, GameState gameState) => PrintedVictoryPoints;
+        public virtual float VictoryPoints(GameEngine game, Player player) => PrintedVictoryPoints;
     }
 }

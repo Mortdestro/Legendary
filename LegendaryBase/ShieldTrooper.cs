@@ -9,6 +9,6 @@ namespace LegendaryHeroes
     {
         public override float PrintedAttackPoints => 1;
         public override string Title => "S.H.I.E.L.D. Trooper";
-        public override string[] PrintedTeams => new string[] { "SHIELD" };
+        public override List<string> PrintedTeams => new List<string> { "SHIELD" };
     }
 }

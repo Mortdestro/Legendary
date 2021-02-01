@@ -6,9 +6,9 @@ namespace LegendaryEngine.CardInterfaces
 {
     public interface IBystander : IVictoryCard
     {
-        void Capture(IVillain villain, List<ICard> source, GameState gameState);
-        bool CaptureCondition(IVillain villain, List<ICard> source, GameState gameState);
-        void Rescue(Player player, List<ICard> source, GameState gameState);
-        bool RescueCondition(Player player, List<ICard> source, GameState gameState);
+        void Capture(GameEngine game, IVillain villain, List<ICard> source);
+        bool CaptureCondition(GameEngine game, IVillain villain, List<ICard> source);
+        void Rescue(GameEngine game, Player player, List<ICard> source);
+        bool RescueCondition(GameEngine game, Player player, List<ICard> source);
     }
 }

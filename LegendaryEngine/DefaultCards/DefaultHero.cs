@@ -7,6 +7,7 @@ namespace LegendaryEngine.DefaultCards
 {
     public class DefaultHero : IHero
     {
+        public virtual Dictionary<string, Action<GameEngine, Player>> AdditionalActions => null;
         public virtual float PrintedAttackPoints => 0;
         public virtual float PrintedCost => 0;
         public virtual float PrintedRecruitPoints => 0;
@@ -14,25 +15,25 @@ namespace LegendaryEngine.DefaultCards
         public virtual string FlavorText => null;
         public virtual string Title => "Hero";
         public virtual string Subtitle => "Hero";
-        public virtual string[] PrintedClasses => new string[0];
-        public virtual string[] PrintedTeams => new string[0];
+        public virtual List<string> PrintedClasses => new List<string>();
+        public virtual List<string> PrintedTeams => new List<string>();
 
-        public virtual float AttackPoints(Player player, GameState gameState) => PrintedAttackPoints;
+        public virtual float AttackPoints(GameEngine game, Player player) => PrintedAttackPoints;
 
-        public virtual string[] Classes(Player player, GameState gameState) => PrintedClasses;
+        public virtual List<string> Classes(GameEngine game, Player player) => PrintedClasses;
 
-        public virtual float Cost(Player player, GameState gameState) => PrintedCost;
+        public virtual float Cost(GameEngine game, Player player) => PrintedCost;
 
-        public virtual void Play(Player player, GameState gameState)
+        public virtual void Play(GameEngine game, Player player)
         {
-            // move from hand to played, add attack points and recruit points to total
+            // move from hand to played, add attack points and recruit points to total, increment classes and teams
             throw new NotImplementedException();
         }
 
-        public virtual bool PlayCondition(Player player, GameState gameState) => true;
+        public virtual bool PlayCondition(GameEngine game, Player player) => true;
 
-        public virtual float RecruitPoints(Player player, GameState gameState) => PrintedRecruitPoints;
+        public virtual float RecruitPoints(GameEngine game, Player player) => PrintedRecruitPoints;
 
-        public virtual string[] Teams(Player player, GameState gameState) => PrintedTeams;
+        public virtual List<string> Teams(GameEngine game, Player player) => PrintedTeams;
     }
 }

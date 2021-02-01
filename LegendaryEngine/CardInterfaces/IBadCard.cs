@@ -6,7 +6,7 @@ namespace LegendaryEngine.CardInterfaces
 {
     public interface IBadCard : ICard
     {
-        void Healing(Player player, GameState gameState);
-        bool HealingCondition(Player player, GameState gameState);
+        void Healing(GameEngine game, Player player);
+        bool HealingCondition(GameEngine game, Player player);
     }
 }

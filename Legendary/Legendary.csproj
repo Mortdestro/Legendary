@@ -101,6 +101,10 @@
       <Project>{f93ff54d-72fb-4222-bc2c-72dabb86ceb1}</Project>
       <Name>LegendaryTestExpansion</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LegendaryVillains\LegendaryVillains.csproj">
+      <Project>{f6e3210e-42ae-4a7f-aa3d-946b5a1ef415}</Project>
+      <Name>LegendaryVillains</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

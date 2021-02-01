@@ -13,6 +13,6 @@ namespace LegendaryHeroes
         public override float PrintedRecruitPoints => 2;
         public override string Title => "S.H.I.E.L.D. Officer";
         public override string Subtitle => "Maria Hill";
-        public override string[] PrintedTeams => new string[] { "SHIELD" };
+        public override List<string> PrintedTeams => new List<string> { "SHIELD" };
     }
 }

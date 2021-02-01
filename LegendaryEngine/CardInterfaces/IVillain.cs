@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegendaryEngine.CardInterfaces
 {
-    public interface IVillain : ICard
+    public interface IVillain : IVictoryCard
     {
     }
 }

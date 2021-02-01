@@ -101,7 +101,6 @@ namespace Legendary
             // checkBoxVillains
             // 
             this.checkBoxVillains.AutoSize = true;
-            this.checkBoxVillains.Enabled = false;
             this.checkBoxVillains.Location = new System.Drawing.Point(80, 70);
             this.checkBoxVillains.Name = "checkBoxVillains";
             this.checkBoxVillains.Size = new System.Drawing.Size(58, 17);
@@ -180,7 +179,7 @@ namespace Legendary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 614);
             this.Controls.Add(this.labelPlayerDecks);
             this.Controls.Add(this.labelStandardHeroes);
             this.Controls.Add(this.labelBystanderStack);

@@ -11,12 +11,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legendary", "Legendary\Lege
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegendaryEngine", "LegendaryEngine\LegendaryEngine.csproj", "{0E277C95-A1C2-4863-ACBD-6218567B6C86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryHeroes", "LegendaryBase\LegendaryHeroes.csproj", "{5E151AFD-8B06-4B1A-8A5F-5775929E5BD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegendaryHeroes", "LegendaryBase\LegendaryHeroes.csproj", "{5E151AFD-8B06-4B1A-8A5F-5775929E5BD2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0E277C95-A1C2-4863-ACBD-6218567B6C86} = {0E277C95-A1C2-4863-ACBD-6218567B6C86}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryTestExpansion", "LegendaryTestExpansion\LegendaryTestExpansion.csproj", "{F93FF54D-72FB-4222-BC2C-72DABB86CEB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegendaryTestExpansion", "LegendaryTestExpansion\LegendaryTestExpansion.csproj", "{F93FF54D-72FB-4222-BC2C-72DABB86CEB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryVillains", "LegendaryVillains\LegendaryVillains.csproj", "{F6E3210E-42AE-4A7F-AA3D-946B5A1EF415}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E277C95-A1C2-4863-ACBD-6218567B6C86} = {0E277C95-A1C2-4863-ACBD-6218567B6C86}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +45,10 @@ Global
 		{F93FF54D-72FB-4222-BC2C-72DABB86CEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F93FF54D-72FB-4222-BC2C-72DABB86CEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F93FF54D-72FB-4222-BC2C-72DABB86CEB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E3210E-42AE-4A7F-AA3D-946B5A1EF415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E3210E-42AE-4A7F-AA3D-946B5A1EF415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E3210E-42AE-4A7F-AA3D-946B5A1EF415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E3210E-42AE-4A7F-AA3D-946B5A1EF415}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@ namespace LegendaryTestExpansion
     {
         public override string Title => "Bad X";
 
-        public override void Healing(Player player, GameState gameState)
+        public override void Healing(GameEngine game, Player player)
         {
             if (player.Hand.Remove(this))
             {

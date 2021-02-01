@@ -2,22 +2,26 @@
 using LegendaryEngine.CardInterfaces;
 using LegendaryHeroes;
 using LegendaryTestExpansion;
+using LegendaryVillains;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using HeroesExports = LegendaryHeroes.Exports;
 using TestExports = LegendaryTestExpansion.Exports;
+using VillainsExports = LegendaryVillains.Exports;
 
 namespace Legendary
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form, ILegendaryInterface
     {
         const int BAD_CARD_LABELS_START_X = 13;
         const int BAD_CARD_LABELS_START_Y = 243;
         const int LABELS_SPACING_X = 100;
         const int LABELS_SPACING_Y = 25;
+        const float STACK_LABEL_FONT_POINT = 10;
 
-        GameState GameState { get; set; }
+        GameEngine Game { get; set; }
         List<Label> BadCardLabels { get; set; }
         List<Label> StandardHeroLabels { get; set; }
         List<Label> PlayerDeckLabels { get; set; }
@@ -37,40 +41,79 @@ namespace Legendary
             comboBoxPlayers.SelectedItem = "3";
         }
 
+        private void SetUpGame()
+        {
+            List<Module> modules = new List<Module>();
+
+            if (checkBoxHeroes.Checked)
+            {
+                modules.Add(HeroesExports.Module);
+            }
+
+            if (checkBoxVillains.Checked)
+            {
+                modules.Add(VillainsExports.Module);
+            }
+
+            if (checkBoxTestExpansion.Checked)
+            {
+                modules.Add(TestExports.Module);
+            }
+
+            Game = new GameEngine(int.Parse(comboBoxPlayers.SelectedItem.ToString()), modules, this);
+            Game.Start();
+        }
+
         private void UpdateLabels()
         {
             ClearLabels();
 
             string cards;
 
+            // Bystanders //
+
+            cards = "";
+            foreach (ICard card in Game.Board.BystanderStack)
+            {
+                if (card is BystanderX)
+                    cards += "X";
+                else if (card is LegendaryHeroes.Bystander || card is LegendaryVillains.Bystander)
+                    cards += "B";
+            }
+            labelBystanderStack.Font = new Font(FontFamily.GenericMonospace, STACK_LABEL_FONT_POINT);
+            labelBystanderStack.Text = cards;
+
             // Bad Cards //
 
             int offsetY = 0;
-            foreach (string type in GameState.BadCardStacks.Keys)
+            foreach (string type in Game.Board.BadCardStacks.Keys)
             {
                 cards = "";
 
                 BadCardLabels.Add(new Label
                 {
                     AutoSize = true,
-                    Location = new System.Drawing.Point(BAD_CARD_LABELS_START_X, BAD_CARD_LABELS_START_Y + offsetY),
+                    Location = new Point(BAD_CARD_LABELS_START_X, BAD_CARD_LABELS_START_Y + offsetY),
                     Name = $"labelBadCards{type}",
                     TabIndex = 100 + offsetY / LABELS_SPACING_Y,
                     Text = type
                 });
 
-                foreach(ICard card in GameState.BadCardStacks[type])
+                foreach (ICard card in Game.Board.BadCardStacks[type])
                 {
                     if (card is Wound)
                         cards += "W";
-                    if (card is BadCardX)
+                    else if (card is Bindings)
+                        cards += "B";
+                    else if (card is BadCardX)
                         cards += "X";
                 }
 
                 BadCardLabels.Add(new Label
                 {
                     AutoSize = true,
-                    Location = new System.Drawing.Point(BAD_CARD_LABELS_START_X + LABELS_SPACING_X, BAD_CARD_LABELS_START_Y + offsetY),
+                    Font = new Font(FontFamily.GenericMonospace, STACK_LABEL_FONT_POINT),
+                    Location = new Point(BAD_CARD_LABELS_START_X + LABELS_SPACING_X, BAD_CARD_LABELS_START_Y + offsetY),
                     Name = $"labelBadCards{type}Stack",
                     TabIndex = 200 + offsetY / LABELS_SPACING_Y,
                     Text = cards
@@ -87,36 +130,41 @@ namespace Legendary
             // Standard Heroes //
 
             int standardHeroLabelsStartX = BAD_CARD_LABELS_START_X;
-            int standardHeroLabelsStartY = BAD_CARD_LABELS_START_Y + LABELS_SPACING_Y * (GameState.BadCardStacks.Keys.Count);
+            int standardHeroLabelsStartY = BAD_CARD_LABELS_START_Y + LABELS_SPACING_Y * (Game.Board.BadCardStacks.Keys.Count);
 
-            labelStandardHeroes.Location = new System.Drawing.Point(standardHeroLabelsStartX, standardHeroLabelsStartY);
+            labelStandardHeroes.Location = new Point(standardHeroLabelsStartX, standardHeroLabelsStartY);
 
             offsetY = LABELS_SPACING_Y;
-            foreach (string type in GameState.StandardHeroStacks.Keys)
+            foreach (string type in Game.Board.StandardHeroStacks.Keys)
             {
                 cards = "";
 
                 StandardHeroLabels.Add(new Label
                 {
                     AutoSize = true,
-                    Location = new System.Drawing.Point(standardHeroLabelsStartX, standardHeroLabelsStartY + offsetY),
+                    Location = new Point(standardHeroLabelsStartX, standardHeroLabelsStartY + offsetY),
                     Name = $"labelStandardHeroes{type}",
                     TabIndex = 300 + offsetY / LABELS_SPACING_Y,
                     Text = type
                 });
 
-                foreach (ICard card in GameState.StandardHeroStacks[type])
+                foreach (ICard card in Game.Board.StandardHeroStacks[type])
                 {
                     if (card is ShieldOfficer)
                         cards += "O";
-                    if (card is HeroX)
+                    else if (card is MadameHydra)
+                        cards += "M";
+                    else if (card is NewRecruits)
+                        cards += "R";
+                    else if (card is HeroX)
                         cards += "X";
                 }
 
                 StandardHeroLabels.Add(new Label
                 {
                     AutoSize = true,
-                    Location = new System.Drawing.Point(standardHeroLabelsStartX + LABELS_SPACING_X, standardHeroLabelsStartY + offsetY),
+                    Font = new Font(FontFamily.GenericMonospace, STACK_LABEL_FONT_POINT),
+                    Location = new Point(standardHeroLabelsStartX + LABELS_SPACING_X, standardHeroLabelsStartY + offsetY),
                     Name = $"labelStandardHeroes{type}Stack",
                     TabIndex = 400 + offsetY / LABELS_SPACING_Y,
                     Text = cards
@@ -133,19 +181,19 @@ namespace Legendary
             // Player Decks //
 
             int playerDeckLabelsStartX = standardHeroLabelsStartX;
-            int playerDeckLabelsStartY = standardHeroLabelsStartY + LABELS_SPACING_Y * (GameState.StandardHeroStacks.Keys.Count + 1);
+            int playerDeckLabelsStartY = standardHeroLabelsStartY + LABELS_SPACING_Y * (Game.Board.StandardHeroStacks.Keys.Count + 1);
 
-            labelPlayerDecks.Location = new System.Drawing.Point(playerDeckLabelsStartX, playerDeckLabelsStartY);
+            labelPlayerDecks.Location = new Point(playerDeckLabelsStartX, playerDeckLabelsStartY);
 
             offsetY = LABELS_SPACING_Y;
-            foreach (Player player in GameState.Players)
+            foreach (Player player in Game.Players)
             {
                 cards = "";
 
                 PlayerDeckLabels.Add(new Label
                 {
                     AutoSize = true,
-                    Location = new System.Drawing.Point(playerDeckLabelsStartX, playerDeckLabelsStartY + offsetY),
+                    Location = new Point(playerDeckLabelsStartX, playerDeckLabelsStartY + offsetY),
                     Name = $"labelPlayerDecks{player.Name.Replace(" ", "")}",
                     TabIndex = 500 + offsetY / LABELS_SPACING_Y,
                     Text = player.Name
@@ -155,14 +203,19 @@ namespace Legendary
                 {
                     if (card is ShieldAgent)
                         cards += "A";
-                    if (card is ShieldTrooper)
+                    else if (card is ShieldTrooper)
                         cards += "T";
+                    else if (card is HydraOperative)
+                        cards += "O";
+                    else if (card is HydraSoldier)
+                        cards += "S";
                 }
 
                 PlayerDeckLabels.Add(new Label
                 {
                     AutoSize = true,
-                    Location = new System.Drawing.Point(playerDeckLabelsStartX + LABELS_SPACING_X, playerDeckLabelsStartY + offsetY),
+                    Font = new Font(FontFamily.GenericMonospace, STACK_LABEL_FONT_POINT),
+                    Location = new Point(playerDeckLabelsStartX + LABELS_SPACING_X, playerDeckLabelsStartY + offsetY),
                     Name = $"label{player.Name.Replace(" ", "")}Deck",
                     TabIndex = 600 + offsetY / LABELS_SPACING_Y,
                     Text = cards
@@ -175,18 +228,6 @@ namespace Legendary
             {
                 Controls.Add(label);
             }
-
-            // Bystanders //
-
-            cards = "";
-            foreach (ICard card in GameState.BystanderStack)
-            {
-                if (card is BystanderX)
-                    cards += "X";
-                else if (card is Bystander)
-                    cards += "B";
-            }
-            labelBystanderStack.Text = cards;
         }
 
         private void ClearLabels()
@@ -215,40 +256,11 @@ namespace Legendary
             labelBystanderStack.Text = "";
         }
 
-        private void ValidateSetUpButton()
-        {
-            buttonSetUp.Enabled = checkBoxHeroes.Checked || checkBoxVillains.Checked;
-        }
-
-        private void buttonSetUp_Click(object sender, EventArgs e)
-        {
-            SetUpGame();
-            UpdateLabels();
-        }
-
-        private void SetUpGame()
-        {
-            List<Module> modules = new List<Module>();
-
-            if (checkBoxHeroes.Checked)
-            {
-                modules.Add(HeroesExports.Module);
-            }
-
-            if (checkBoxTestExpansion.Checked)
-            {
-                modules.Add(TestExports.Module);
-            }
-
-            GameState = new GameState(int.Parse(comboBoxPlayers.SelectedItem.ToString()));
-            GameState.PopulateStacks(modules, SelectModule);
-        }
-
-        private Module SelectModule(List<Module> modules, string prompt)
+        public Module SelectModule(List<Module> modules, string title = "Marvel Legendary - Expansions", string prompt = "Select an expansion:")
         {
             Module module = null;
 
-            using (ModuleSelectForm moduleForm = new ModuleSelectForm(modules, prompt: prompt))
+            using (ModuleSelectForm moduleForm = new ModuleSelectForm(modules, title, prompt))
             {
                 DialogResult result = moduleForm.ShowDialog();
                 if (result == DialogResult.OK)
@@ -258,6 +270,17 @@ namespace Legendary
             }
 
             return module;
+        }
+
+        private void ValidateSetUpButton()
+        {
+            buttonSetUp.Enabled = checkBoxHeroes.Checked || checkBoxVillains.Checked;
+        }
+
+        private void buttonSetUp_Click(object sender, EventArgs e)
+        {
+            SetUpGame();
+            UpdateLabels();
         }
 
         private void checkBoxHeroes_CheckedChanged(object sender, EventArgs e)

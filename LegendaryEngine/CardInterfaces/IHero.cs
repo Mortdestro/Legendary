@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static LegendaryEngine.Utilities;
 
 namespace LegendaryEngine.CardInterfaces
 {
     public interface IHero : ICard
     {
-        float PrintedCost { get; }
+        Dictionary<string, Action<GameEngine, Player>> AdditionalActions { get; }
         float PrintedAttackPoints { get; }
+        List<string> PrintedClasses { get; }
+        float PrintedCost { get; }
         float PrintedRecruitPoints { get; }
-        string[] PrintedClasses { get; }
-        string[] PrintedTeams { get; }
-        string RulesText { get; }
+        List<string> PrintedTeams { get; }
 
-        string[] Classes(Player player, GameState gameState);
-        float Cost(Player player, GameState gameState);
-        float AttackPoints(Player player, GameState gameState);
-        void Play(Player player, GameState gameState);
-        bool PlayCondition(Player player, GameState gameState);
-        float RecruitPoints(Player player, GameState gameState);
-        string[] Teams(Player player, GameState gameState);
+        List<string> Classes(GameEngine game, Player player);
+        float Cost(GameEngine game, Player player);
+        float AttackPoints(GameEngine game, Player player);
+        void Play(GameEngine game, Player player);
+        bool PlayCondition(GameEngine game, Player player);
+        float RecruitPoints(GameEngine game, Player player);
+        List<string> Teams(GameEngine game, Player player);
     }
 }

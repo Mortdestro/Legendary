@@ -3,22 +3,13 @@ using LegendaryEngine;
 using LegendaryEngine.CardInterfaces;
 using LegendaryEngine.DefaultCards;
 
-namespace LegendaryHeroes
+namespace LegendaryVillains
 {
-    public class Wound : DefaultBadCard
+    public class Bindings : DefaultBadCard
     {
         public override void Healing(GameEngine game, Player player)
         {
-            foreach (ICard card in player.Hand)
-            {
-                if (card is Wound)
-                {
-                    if (player.Hand.Remove(card))
-                    {
-                        game.Board.KOPile.Add(card);
-                    }
-                }
-            }
+            throw new NotImplementedException();
         }
 
         public override bool HealingCondition(GameEngine game, Player player)

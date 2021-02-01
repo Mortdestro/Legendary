@@ -9,6 +9,6 @@ namespace LegendaryTestExpansion
 {
     public class BystanderX : DefaultBystander
     {
-        public override int PrintedVictoryPoints => 2;
+        public override float PrintedVictoryPoints => 2;
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static LegendaryEngine.Utilities;
 
 namespace LegendaryEngine.CardInterfaces
 {
     public interface IVictoryCard : ICard
     {
-        int PrintedVictoryPoints { get; }
-        int VictoryPoints(Player player, GameState gameState);
+        float PrintedVictoryPoints { get; }
+        float VictoryPoints(GameEngine game, Player player);
     }
 }
