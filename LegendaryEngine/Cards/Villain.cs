@@ -4,16 +4,12 @@ using System.Text;
 
 namespace LegendaryEngine.Cards
 {
-    public class Villain : IVictoryCard
+    public class Villain : VictoryCard
     {
-        public string ID { get; set; }
-        public float PrintedVictoryPoints { get; set; }
-        public string FlavorText { get; set; }
-        public string RulesText { get; set; }
-        public string Subtitle { get; set; }
-        public string Title { get; set; } = "Villain";
-        public Func<IVictoryCard, GameEngine, Player, float> VictoryPoints { get; set; } = DefaultVictoryPoints;
+        public override string Title { get; set; } = "Villain";
 
-        public static float DefaultVictoryPoints(IVictoryCard card, GameEngine game, Player player) => card.PrintedVictoryPoints;
+        public virtual Action<Villain, GameEngine, Player> Fight { get; set; } = DefaultFight;
+
+        public static void DefaultFight(Villain card, GameEngine game, Player player) { }
     }
 }
