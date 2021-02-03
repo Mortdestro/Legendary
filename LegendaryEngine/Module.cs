@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using LegendaryEngine.CardInterfaces;
+using LegendaryEngine.Cards;
 
 namespace LegendaryEngine
 {
@@ -11,7 +11,7 @@ namespace LegendaryEngine
         public string Name { get; set; }
         public List<ICard> StartingCards { get; set; }
         public Dictionary<string, List<BadCard>> BadCards { get; set; }
-        public List<IBystander> Bystanders { get; set; }
+        public List<Bystander> Bystanders { get; set; }
         public Dictionary<string, List<IHero>> StandardHeroes { get; set; }
 
         public static Module Merge(List<Module> modules)

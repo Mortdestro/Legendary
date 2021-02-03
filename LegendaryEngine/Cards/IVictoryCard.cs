@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using static LegendaryEngine.Utilities;
 
-namespace LegendaryEngine.CardInterfaces
+namespace LegendaryEngine.Cards
 {
     public interface IVictoryCard : ICard
     {
-        float PrintedVictoryPoints { get; }
-        float VictoryPoints(GameEngine game, Player player);
+        float PrintedVictoryPoints { get; set; }
+        Func<IVictoryCard, GameEngine, Player, float> VictoryPoints { get; set; }
     }
 }

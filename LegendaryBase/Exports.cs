@@ -1,5 +1,5 @@
 ﻿using LegendaryEngine;
-using LegendaryEngine.CardInterfaces;
+using LegendaryEngine.Cards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace LegendaryHeroes
             {
                 { "Wound", Enumerable.Repeat(StackCards.CreateWound(), 30).ToList() }
             },
-            Bystanders = Enumerable.Repeat<IBystander>(new Bystander(), 30).ToList(),
+            Bystanders = Enumerable.Repeat(new Bystander(), 30).ToList(),
             StandardHeroes = new Dictionary<string, List<IHero>>
             {
                 { "S.H.I.E.L.D. Officer", Enumerable.Repeat<IHero>(new ShieldOfficer(), 30).ToList() }

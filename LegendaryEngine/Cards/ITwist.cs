@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendaryEngine.CardInterfaces
+namespace LegendaryEngine.Cards
 {
     public interface ITwist : ICard
     {

@@ -1,5 +1,5 @@
 ﻿using LegendaryEngine;
-using LegendaryEngine.CardInterfaces;
+using LegendaryEngine.Cards;
 using LegendaryEngine.DefaultCards;
 using System;
 using System.Collections.Generic;

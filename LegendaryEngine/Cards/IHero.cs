@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static LegendaryEngine.Utilities;
 
-namespace LegendaryEngine.CardInterfaces
+namespace LegendaryEngine.Cards
 {
     public interface IHero : ICard
     {

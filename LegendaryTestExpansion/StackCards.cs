@@ -1,5 +1,5 @@
 ﻿using LegendaryEngine;
-using LegendaryEngine.CardInterfaces;
+using LegendaryEngine.Cards;
 using LegendaryEngine.DefaultCards;
 using System;
 
@@ -15,6 +15,15 @@ namespace LegendaryTestExpansion
                 Healing = XHealing,
                 RulesText = "<b>Healing:</b> On your turn, you may put this Wound in your discard pile.", // @TODO
                 Title = "Bad X"
+            };
+        }
+
+        public static Bystander CreateBystanderX()
+        {
+            return new Bystander
+            {
+                ID = "BystanderX",
+                PrintedVictoryPoints = 2
             };
         }
 

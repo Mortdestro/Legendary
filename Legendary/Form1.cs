@@ -1,5 +1,5 @@
 ﻿using LegendaryEngine;
-using LegendaryEngine.CardInterfaces;
+using LegendaryEngine.Cards;
 using LegendaryHeroes;
 using LegendaryTestExpansion;
 using LegendaryVillains;
@@ -75,9 +75,9 @@ namespace Legendary
             cards = "";
             foreach (ICard card in Game.Board.BystanderStack)
             {
-                if (card is BystanderX)
+                if (card.ID == "BystanderX")
                     cards += "X";
-                else if (card is LegendaryHeroes.Bystander || card is LegendaryVillains.Bystander)
+                else if (card.ID == "Bystander")
                     cards += "B";
             }
             labelBystanderStack.Font = new Font(FontFamily.GenericMonospace, STACK_LABEL_FONT_POINT);

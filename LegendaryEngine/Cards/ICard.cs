@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LegendaryEngine.CardInterfaces
+namespace LegendaryEngine.Cards
 {
     public interface ICard
     {
