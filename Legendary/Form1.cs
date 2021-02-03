@@ -1,8 +1,5 @@
 ﻿using LegendaryEngine;
 using LegendaryEngine.Cards;
-using LegendaryHeroes;
-using LegendaryTestExpansion;
-using LegendaryVillains;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -73,7 +70,7 @@ namespace Legendary
             // Bystanders //
 
             cards = "";
-            foreach (ICard card in Game.Board.BystanderStack)
+            foreach (Card card in Game.Board.BystanderStack)
             {
                 if (card.ID == "BystanderX")
                     cards += "X";
@@ -99,7 +96,7 @@ namespace Legendary
                     Text = type
                 });
 
-                foreach (ICard card in Game.Board.BadCardStacks[type])
+                foreach (Card card in Game.Board.BadCardStacks[type])
                 {
                     if (card.ID == "Wound")
                         cards += "W";
@@ -148,7 +145,7 @@ namespace Legendary
                     Text = type
                 });
 
-                foreach (ICard card in Game.Board.StandardHeroStacks[type])
+                foreach (Card card in Game.Board.StandardHeroStacks[type])
                 {
                     if (card.ID == "ShieldOfficer")
                         cards += "O";
@@ -199,7 +196,7 @@ namespace Legendary
                     Text = player.Name
                 });
 
-                foreach (ICard card in player.Deck)
+                foreach (Card card in player.Deck)
                 {
                     if (card.ID == "ShieldAgent")
                         cards += "A";

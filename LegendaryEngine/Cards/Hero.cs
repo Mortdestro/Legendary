@@ -4,27 +4,24 @@ using System.Text;
 
 namespace LegendaryEngine.Cards
 {
-    public class Hero : ICard
+    public class Hero : Card
     {
-        public string ID { get; set; }
-        public Dictionary<string, Action<Hero, GameEngine, Player>> AdditionalActions { get; set; }
-        public string FlavorText { get; set; }
-        public float PrintedAttackPoints { get; set; }
-        public List<string> PrintedClasses { get; set; } = new List<string>();
-        public float PrintedCost { get; set; }
-        public float PrintedRecruitPoints { get; set; }
-        public List<string> PrintedTeams { get; set; } = new List<string>();
-        public string RulesText { get; set; }
-        public string Subtitle { get; set; } = "Hero";
-        public string Title { get; set; } = "Hero";
+        public override string Subtitle { get; set; } = "Hero";
+        public override string Title { get; set; } = "Hero";
 
-        public Func<Hero, GameEngine, Player, List<string>> Classes { get; set; } = DefaultClasses;
-        public Func<Hero, GameEngine, Player, float> Cost { get; set; } = DefaultCost;
-        public Func<Hero, GameEngine, Player, float> AttackPoints { get; set; } = DefaultAttackPoints;
-        public Action<Hero, GameEngine, Player> Play { get; set; } = DefaultPlay;
-        public Func<Hero, GameEngine, Player, bool> PlayCondition { get; set; } = DefaultPlayCondition;
-        public Func<Hero, GameEngine, Player, float> RecruitPoints { get; set; } = DefaultRecruitPoints;
-        public Func<Hero, GameEngine, Player, List<string>> Teams { get; set; } = DefaultTeams;
+        public virtual Dictionary<string, Action<Hero, GameEngine, Player>> AdditionalActions { get; set; }
+        public virtual Func<Hero, GameEngine, Player, float> AttackPoints { get; set; } = DefaultAttackPoints;
+        public virtual Func<Hero, GameEngine, Player, List<string>> Classes { get; set; } = DefaultClasses;
+        public virtual Func<Hero, GameEngine, Player, float> Cost { get; set; } = DefaultCost;
+        public virtual Action<Hero, GameEngine, Player> Play { get; set; } = DefaultPlay;
+        public virtual Func<Hero, GameEngine, Player, bool> PlayCondition { get; set; } = DefaultPlayCondition;
+        public virtual float PrintedAttackPoints { get; set; }
+        public virtual List<string> PrintedClasses { get; set; } = new List<string>();
+        public virtual float PrintedCost { get; set; }
+        public virtual float PrintedRecruitPoints { get; set; }
+        public virtual List<string> PrintedTeams { get; set; } = new List<string>();
+        public virtual Func<Hero, GameEngine, Player, float> RecruitPoints { get; set; } = DefaultRecruitPoints;
+        public virtual Func<Hero, GameEngine, Player, List<string>> Teams { get; set; } = DefaultTeams;
 
         public static float DefaultAttackPoints(Hero card, GameEngine game, Player player) => card.PrintedAttackPoints;
 

@@ -8,11 +8,11 @@ namespace LegendaryEngine
     public class Player
     {
         public string Name;
-        public List<ICard> Hand;
-        public List<ICard> PlayedCards;
-        public List<ICard> Deck;
-        public List<ICard> DiscardPile;
-        public List<ICard> VictoryPile;
+        public List<Card> Hand;
+        public List<Card> PlayedCards;
+        public List<Card> Deck;
+        public List<Card> DiscardPile;
+        public List<Card> VictoryPile;
 
         public void Draw(int numCards = 1)
         {

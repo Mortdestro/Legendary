@@ -21,8 +21,8 @@ namespace LegendaryHeroes
             {
                 { "S.H.I.E.L.D. Officer", Enumerable.Repeat(Heroes.CreateShieldOfficer(), 30).ToList() }
             },
-            StartingCards = Enumerable.Repeat<ICard>(Heroes.CreateShieldAgent(), 8).ToList()
-                .Concat(Enumerable.Repeat<ICard>(Heroes.CreateShieldTrooper(), 4)).ToList()
+            StartingCards = Enumerable.Repeat<Card>(Heroes.CreateShieldAgent(), 8).ToList()
+                .Concat(Enumerable.Repeat<Card>(Heroes.CreateShieldTrooper(), 4)).ToList()
         };
     }
 }

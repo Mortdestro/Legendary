@@ -11,28 +11,28 @@ namespace LegendaryEngine
         public Scheme Scheme { get; set; }
         public HQ HQState { get; set; }
         public City CityState { get; set; }
-        public List<ICard> HeroDeck { get; set; }
-        public List<ICard> VillainDeck { get; set; }
-        public Dictionary<string, List<ICard>> BadCardStacks { get; set; }
-        public List<ICard> BystanderStack { get; set; }
-        public Dictionary<string, List<ICard>> StandardHeroStacks { get; set; }
-        public List<ICard> MastermindTactics { get; set; }
-        public List<ICard> KOPile { get; set; }
-        public List<ICard> EscapePile { get; set; }
+        public List<Card> HeroDeck { get; set; }
+        public List<Card> VillainDeck { get; set; }
+        public Dictionary<string, List<Card>> BadCardStacks { get; set; }
+        public List<Card> BystanderStack { get; set; }
+        public Dictionary<string, List<Card>> StandardHeroStacks { get; set; }
+        public List<Card> MastermindTactics { get; set; }
+        public List<Card> KOPile { get; set; }
+        public List<Card> EscapePile { get; set; }
 
 
         public Board()
         {
             HQState = new HQ();
             CityState = new City();
-            HeroDeck = new List<ICard>();
-            VillainDeck = new List<ICard>();
-            BadCardStacks = new Dictionary<string, List<ICard>>();
-            StandardHeroStacks = new Dictionary<string, List<ICard>>();
-            BystanderStack = new List<ICard>();
-            MastermindTactics = new List<ICard>();
-            KOPile = new List<ICard>();
-            EscapePile = new List<ICard>();
+            HeroDeck = new List<Card>();
+            VillainDeck = new List<Card>();
+            BadCardStacks = new Dictionary<string, List<Card>>();
+            StandardHeroStacks = new Dictionary<string, List<Card>>();
+            BystanderStack = new List<Card>();
+            MastermindTactics = new List<Card>();
+            KOPile = new List<Card>();
+            EscapePile = new List<Card>();
         }
 
         public void Clear()
@@ -49,11 +49,11 @@ namespace LegendaryEngine
 
         public class HQ
         {
-            public ICard[] Cards { get; }
+            public Card[] Cards { get; }
 
             internal HQ()
             {
-                Cards = new ICard[5];
+                Cards = new Card[5];
             }
 
             internal void Clear()
@@ -64,11 +64,11 @@ namespace LegendaryEngine
 
         public class City
         {
-            public ICard[] Cards { get; }
+            public Card[] Cards { get; }
 
             internal City()
             {
-                Cards = new ICard[5];
+                Cards = new Card[5];
             }
 
             internal void Clear()

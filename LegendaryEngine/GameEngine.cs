@@ -31,11 +31,11 @@ namespace LegendaryEngine
                 Players.Add(new Player
                 {
                     Name = $"Player {i + 1}",
-                    Deck = new List<ICard>(),
-                    DiscardPile = new List<ICard>(),
-                    Hand = new List<ICard>(),
-                    PlayedCards = new List<ICard>(),
-                    VictoryPile = new List<ICard>()
+                    Deck = new List<Card>(),
+                    DiscardPile = new List<Card>(),
+                    Hand = new List<Card>(),
+                    PlayedCards = new List<Card>(),
+                    VictoryPile = new List<Card>()
                 });
             }
         }
@@ -61,14 +61,14 @@ namespace LegendaryEngine
 
             foreach (string type in module.BadCards.Keys)
             {
-                Board.BadCardStacks[type] = new List<ICard>(module.BadCards[type]);
+                Board.BadCardStacks[type] = new List<Card>(module.BadCards[type]);
                 Board.BadCardStacks[type].Shuffle();
             }
         }
 
         private void PopulateBystanderStack(Module module)
         {
-            Board.BystanderStack = new List<ICard>(module.Bystanders);
+            Board.BystanderStack = new List<Card>(module.Bystanders);
             Board.BystanderStack.Shuffle();
         }
 
@@ -78,7 +78,7 @@ namespace LegendaryEngine
 
             foreach (string type in module.StandardHeroes.Keys)
             {
-                Board.StandardHeroStacks[type] = new List<ICard>(module.StandardHeroes[type]);
+                Board.StandardHeroStacks[type] = new List<Card>(module.StandardHeroes[type]);
                 Board.StandardHeroStacks[type].Shuffle();
             }
         }

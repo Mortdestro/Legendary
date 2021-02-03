@@ -4,17 +4,9 @@ using System.Text;
 
 namespace LegendaryEngine.Cards
 {
-    public class Scheme : ICard
+    public class Scheme : Card
     {
-        // Setup
-        public string ID { get; set; }
-
-        public string FlavorText { get; set; }
-
-        public string RulesText { get; set; }
-
-        public string Subtitle { get; set; }
-
-        public string Title { get; set; }
+        // @TODO: Setup
+        public override string Title { get; set; } = "Scheme";
     }
 }

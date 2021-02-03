@@ -22,8 +22,8 @@ namespace LegendaryVillains
                 { "Madame HYDRA", Enumerable.Repeat(Heroes.CreateMadameHydra(), 15).ToList() },
                 { "New Recruits", Enumerable.Repeat(Heroes.CreateNewRecruits(), 15).ToList() }
             },
-            StartingCards = Enumerable.Repeat<ICard>(Heroes.CreateHydraOperative(), 8).ToList()
-                .Concat(Enumerable.Repeat<ICard>(Heroes.CreateHydraSoldier(), 4)).ToList()
+            StartingCards = Enumerable.Repeat<Card>(Heroes.CreateHydraOperative(), 8).ToList()
+                .Concat(Enumerable.Repeat<Card>(Heroes.CreateHydraSoldier(), 4)).ToList()
         };
     }
 }

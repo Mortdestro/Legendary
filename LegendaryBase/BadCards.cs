@@ -20,7 +20,7 @@ namespace LegendaryHeroes
 
         private static void WoundHealing(BadCard card, GameEngine game, Player player)
         {
-            foreach (ICard handCard in player.Hand)
+            foreach (Card handCard in player.Hand)
             {
                 if (handCard.ID.StartsWith("Wound"))
                 {
