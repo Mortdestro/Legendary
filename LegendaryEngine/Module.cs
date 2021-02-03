@@ -12,7 +12,7 @@ namespace LegendaryEngine
         public List<ICard> StartingCards { get; set; }
         public Dictionary<string, List<BadCard>> BadCards { get; set; }
         public List<Bystander> Bystanders { get; set; }
-        public Dictionary<string, List<IHero>> StandardHeroes { get; set; }
+        public Dictionary<string, List<Hero>> StandardHeroes { get; set; }
 
         public static Module Merge(List<Module> modules)
         {

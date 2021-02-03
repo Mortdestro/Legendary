@@ -14,12 +14,12 @@ namespace LegendaryTestExpansion
             Name = "Test Expansion",
             BadCards = new Dictionary<string, List<BadCard>>
             {
-                { "Wound", Enumerable.Repeat(StackCards.CreateBadCardX(), 10).ToList() }
+                { "Wound", Enumerable.Repeat(BadCards.CreateBadCardX(), 10).ToList() }
             },
-            Bystanders = Enumerable.Repeat(StackCards.CreateBystanderX(), 4).ToList(),
-            StandardHeroes = new Dictionary<string, List<IHero>>
+            Bystanders = Enumerable.Repeat(Bystanders.CreateBystanderX(), 4).ToList(),
+            StandardHeroes = new Dictionary<string, List<Hero>>
             {
-                { "Hero X", Enumerable.Repeat<IHero>(new HeroX(), 30).ToList() }
+                { "Hero X", Enumerable.Repeat(Heroes.CreateHeroX(), 30).ToList() }
             }
         };
     }

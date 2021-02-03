@@ -14,15 +14,15 @@ namespace LegendaryHeroes
             Name = "Marvel Legendary",
             BadCards = new Dictionary<string, List<BadCard>>
             {
-                { "Wound", Enumerable.Repeat(StackCards.CreateWound(), 30).ToList() }
+                { "Wound", Enumerable.Repeat(BadCards.CreateWound(), 30).ToList() }
             },
-            Bystanders = Enumerable.Repeat(new Bystander(), 30).ToList(),
-            StandardHeroes = new Dictionary<string, List<IHero>>
+            Bystanders = Enumerable.Repeat(Bystanders.CreateBystander(), 30).ToList(),
+            StandardHeroes = new Dictionary<string, List<Hero>>
             {
-                { "S.H.I.E.L.D. Officer", Enumerable.Repeat<IHero>(new ShieldOfficer(), 30).ToList() }
+                { "S.H.I.E.L.D. Officer", Enumerable.Repeat(Heroes.CreateShieldOfficer(), 30).ToList() }
             },
-            StartingCards = Enumerable.Repeat<ICard>(new ShieldAgent(), 8).ToList()
-                .Concat(Enumerable.Repeat<ICard>(new ShieldTrooper(), 4)).ToList()
+            StartingCards = Enumerable.Repeat<ICard>(Heroes.CreateShieldAgent(), 8).ToList()
+                .Concat(Enumerable.Repeat<ICard>(Heroes.CreateShieldTrooper(), 4)).ToList()
         };
     }
 }

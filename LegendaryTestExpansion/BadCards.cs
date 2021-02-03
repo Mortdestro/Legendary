@@ -5,7 +5,7 @@ using System;
 
 namespace LegendaryTestExpansion
 {
-    public static class StackCards
+    public static class BadCards
     {
         public static BadCard CreateBadCardX()
         {
@@ -15,15 +15,6 @@ namespace LegendaryTestExpansion
                 Healing = XHealing,
                 RulesText = "<b>Healing:</b> On your turn, you may put this Wound in your discard pile.", // @TODO
                 Title = "Bad X"
-            };
-        }
-
-        public static Bystander CreateBystanderX()
-        {
-            return new Bystander
-            {
-                ID = "BystanderX",
-                PrintedVictoryPoints = 2
             };
         }
 

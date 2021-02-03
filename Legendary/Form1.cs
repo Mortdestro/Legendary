@@ -150,13 +150,13 @@ namespace Legendary
 
                 foreach (ICard card in Game.Board.StandardHeroStacks[type])
                 {
-                    if (card is ShieldOfficer)
+                    if (card.ID == "ShieldOfficer")
                         cards += "O";
-                    else if (card is MadameHydra)
+                    else if (card.ID == "MadameHydra")
                         cards += "M";
-                    else if (card is NewRecruits)
+                    else if (card.ID == "NewRecruits")
                         cards += "R";
-                    else if (card is HeroX)
+                    else if (card.ID == "HeroX")
                         cards += "X";
                 }
 
@@ -201,13 +201,13 @@ namespace Legendary
 
                 foreach (ICard card in player.Deck)
                 {
-                    if (card is ShieldAgent)
+                    if (card.ID == "ShieldAgent")
                         cards += "A";
-                    else if (card is ShieldTrooper)
+                    else if (card.ID == "ShieldTrooper")
                         cards += "T";
-                    else if (card is HydraOperative)
+                    else if (card.ID == "HydraOperative")
                         cards += "O";
-                    else if (card is HydraSoldier)
+                    else if (card.ID == "HydraSoldier")
                         cards += "S";
                 }
 

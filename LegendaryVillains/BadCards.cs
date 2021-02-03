@@ -5,7 +5,7 @@ using LegendaryEngine.DefaultCards;
 
 namespace LegendaryVillains
 {
-    public static class StackCards
+    public static class BadCards
     {
         public static BadCard CreateBindings()
         {

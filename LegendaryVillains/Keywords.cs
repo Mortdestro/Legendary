@@ -8,7 +8,7 @@ namespace LegendaryVillains
 {
     public static class Keywords
     {
-        public static void Dodge(this ICard card, GameEngine game, Player player)
+        public static void Dodge(Hero card, GameEngine game, Player player)
         {
             throw new NotImplementedException();
         }

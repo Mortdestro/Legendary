@@ -14,16 +14,16 @@ namespace LegendaryVillains
             Name = "Marvel Legendary Villains",
             BadCards = new Dictionary<string, List<BadCard>>
             {
-                { "Bindings", Enumerable.Repeat(StackCards.CreateBindings(), 30).ToList() }
+                { "Bindings", Enumerable.Repeat(BadCards.CreateBindings(), 30).ToList() }
             },
-            Bystanders = Enumerable.Repeat(new Bystander(), 30).ToList(),
-            StandardHeroes = new Dictionary<string, List<IHero>>
+            Bystanders = Enumerable.Repeat(Bystanders.CreateBystander(), 30).ToList(),
+            StandardHeroes = new Dictionary<string, List<Hero>>
             {
-                { "Madame HYDRA", Enumerable.Repeat<IHero>(new MadameHydra(), 15).ToList() },
-                { "New Recruits", Enumerable.Repeat<IHero>(new NewRecruits(), 15).ToList() }
+                { "Madame HYDRA", Enumerable.Repeat(Heroes.CreateMadameHydra(), 15).ToList() },
+                { "New Recruits", Enumerable.Repeat(Heroes.CreateNewRecruits(), 15).ToList() }
             },
-            StartingCards = Enumerable.Repeat<ICard>(new HydraOperative(), 8).ToList()
-                .Concat(Enumerable.Repeat<ICard>(new HydraSoldier(), 4)).ToList()
+            StartingCards = Enumerable.Repeat<ICard>(Heroes.CreateHydraOperative(), 8).ToList()
+                .Concat(Enumerable.Repeat<ICard>(Heroes.CreateHydraSoldier(), 4)).ToList()
         };
     }
 }

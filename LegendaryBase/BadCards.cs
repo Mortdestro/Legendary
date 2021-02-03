@@ -5,7 +5,7 @@ using LegendaryEngine.DefaultCards;
 
 namespace LegendaryHeroes
 {
-    public static class StackCards
+    public static class BadCards
     {
         public static BadCard CreateWound()
         {
