@@ -1,7 +1,6 @@
 ﻿using System;
 using LegendaryEngine;
 using LegendaryEngine.Cards;
-using LegendaryEngine.DefaultCards;
 
 namespace LegendaryVillains
 {

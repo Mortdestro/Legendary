@@ -1,6 +1,5 @@
 ﻿using LegendaryEngine;
 using LegendaryEngine.Cards;
-using LegendaryEngine.DefaultCards;
 using System;
 
 namespace LegendaryTestExpansion

@@ -7,8 +7,8 @@ namespace LegendaryEngine.Cards
     public class Bystander : IVictoryCard
     {
         public string ID { get; set; }
-        public Action<Bystander, GameEngine, IVillain, List<ICard>> Capture { get; set; } = DefaultCapture;
-        public Func<Bystander, GameEngine, IVillain, List<ICard>, bool> CaptureCondition { get; set; } = DefaultCaptureCondition;
+        public Action<Bystander, GameEngine, Villain, List<ICard>> Capture { get; set; } = DefaultCapture;
+        public Func<Bystander, GameEngine, Villain, List<ICard>, bool> CaptureCondition { get; set; } = DefaultCaptureCondition;
         public string FlavorText { get; set; }
         public float PrintedVictoryPoints { get; set; } = 1;
         public Action<Bystander, GameEngine, Player, List<ICard>> Rescue { get; set; } = DefaultRescue;
@@ -18,12 +18,12 @@ namespace LegendaryEngine.Cards
         public string Title { get; set; } = "Bystander";
         public Func<IVictoryCard, GameEngine, Player, float> VictoryPoints { get; set; } = DefaultVictoryPoints;
 
-        public static void DefaultCapture(Bystander card, GameEngine game, IVillain villain, List<ICard> source)
+        public static void DefaultCapture(Bystander card, GameEngine game, Villain villain, List<ICard> source)
         {
             throw new NotImplementedException();
         }
 
-        public static bool DefaultCaptureCondition(Bystander card, GameEngine game, IVillain villain, List<ICard> source) => true;
+        public static bool DefaultCaptureCondition(Bystander card, GameEngine game, Villain villain, List<ICard> source) => true;
 
         public static void DefaultRescue(Bystander card, GameEngine game, Player player, List<ICard> source)
         {

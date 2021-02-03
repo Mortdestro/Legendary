@@ -7,8 +7,8 @@ namespace LegendaryEngine
 {
     public class Board
     {
-        public IMastermind Mastermind { get; set; }
-        public IScheme Scheme { get; set; }
+        public Mastermind Mastermind { get; set; }
+        public Scheme Scheme { get; set; }
         public HQ HQState { get; set; }
         public City CityState { get; set; }
         public List<ICard> HeroDeck { get; set; }
