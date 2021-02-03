@@ -7,6 +7,7 @@ namespace LegendaryEngine.DefaultCards
 {
     public class DefaultHero : IHero
     {
+        public string ID { get => "Default Hero"; set => ID = ID; }
         public virtual Dictionary<string, Action<GameEngine, Player>> AdditionalActions => null;
         public virtual float PrintedAttackPoints => 0;
         public virtual float PrintedCost => 0;

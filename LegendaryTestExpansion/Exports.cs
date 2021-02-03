@@ -12,9 +12,9 @@ namespace LegendaryTestExpansion
         public static readonly Module Module = new Module
         {
             Name = "Test Expansion",
-            BadCards = new Dictionary<string, List<IBadCard>>
+            BadCards = new Dictionary<string, List<BadCard>>
             {
-                { "Wound", Enumerable.Repeat<IBadCard>(new BadCardX(), 15).ToList() }
+                { "Wound", Enumerable.Repeat(StackCards.CreateBadCardX(), 15).ToList() }
             },
             Bystanders = Enumerable.Repeat<IBystander>(new BystanderX(), 4).ToList(),
             StandardHeroes = new Dictionary<string, List<IHero>>

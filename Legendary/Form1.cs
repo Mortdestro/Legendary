@@ -101,11 +101,11 @@ namespace Legendary
 
                 foreach (ICard card in Game.Board.BadCardStacks[type])
                 {
-                    if (card is Wound)
+                    if (card.ID == "Wound")
                         cards += "W";
-                    else if (card is Bindings)
+                    else if (card.ID == "Bindings")
                         cards += "B";
-                    else if (card is BadCardX)
+                    else if (card.ID == "BadCardX")
                         cards += "X";
                 }
 

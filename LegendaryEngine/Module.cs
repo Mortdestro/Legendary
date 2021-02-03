@@ -10,7 +10,7 @@ namespace LegendaryEngine
     {
         public string Name { get; set; }
         public List<ICard> StartingCards { get; set; }
-        public Dictionary<string, List<IBadCard>> BadCards { get; set; }
+        public Dictionary<string, List<BadCard>> BadCards { get; set; }
         public List<IBystander> Bystanders { get; set; }
         public Dictionary<string, List<IHero>> StandardHeroes { get; set; }
 

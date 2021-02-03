@@ -7,6 +7,7 @@ namespace LegendaryEngine.DefaultCards
 {
     public class DefaultBystander : IBystander
     {
+        public string ID { get => "Default Bystander"; set => ID = ID; }
         public virtual string FlavorText => null;
         public virtual float PrintedVictoryPoints => 1;
         public virtual string RulesText => null;

@@ -12,9 +12,9 @@ namespace LegendaryVillains
         public static readonly Module Module = new Module
         {
             Name = "Marvel Legendary Villains",
-            BadCards = new Dictionary<string, List<IBadCard>>
+            BadCards = new Dictionary<string, List<BadCard>>
             {
-                { "Bindings", Enumerable.Repeat<IBadCard>(new Bindings(), 30).ToList() }
+                { "Bindings", Enumerable.Repeat(StackCards.CreateBindings(), 30).ToList() }
             },
             Bystanders = Enumerable.Repeat<IBystander>(new Bystander(), 30).ToList(),
             StandardHeroes = new Dictionary<string, List<IHero>>
