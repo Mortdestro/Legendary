@@ -44,6 +44,7 @@ namespace LegendaryEngine
         {
             PopulateStacks();
             PopulatePlayerDecks();
+            PopulateHeroes();
         }
 
         private void PopulateStacks()
@@ -101,6 +102,17 @@ namespace LegendaryEngine
                 player.Deck.AddRange(module.StartingCards);
                 player.Deck.Shuffle();
             }
+        }
+
+        private void PopulateHeroes()
+        {
+            int numHeroes = Players.Count == 5 ? 6 : 5;
+            List<(Module module, string hero)> heroes = ui.SelectHeroes(Modules, numHeroes);
+            foreach ((Module module, string hero) in heroes)
+            {
+                Board.HeroDeck.AddRange(module.Heroes[hero]);
+            }
+            Board.HeroDeck.Shuffle();
         }
 
         public class Turn

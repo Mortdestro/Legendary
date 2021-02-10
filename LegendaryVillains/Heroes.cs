@@ -15,7 +15,7 @@ namespace LegendaryVillains
                 ID = "HydraOperative",
                 PrintedRecruitPoints = 1,
                 PrintedTeams = new List<string> { "HYDRA" },
-                Subtitle = "Ally",
+                HeroName = "Ally",
                 Title = "HYDRA Operative"
             };
         }
@@ -27,7 +27,7 @@ namespace LegendaryVillains
                 ID = "HydraSoldier",
                 PrintedAttackPoints = 1,
                 PrintedTeams = new List<string> { "HYDRA" },
-                Subtitle = "Ally",
+                HeroName = "Ally",
                 Title = "HYDRA Soldier"
             };
         }
@@ -47,7 +47,7 @@ namespace LegendaryVillains
                 PrintedTeams = new List<string> { "HYDRA" },
                 RulesText = "<b>Dodge</b>\r\n" +
                 "To play this card, you must discard a card from your hand.",
-                Subtitle = "Viper",
+                HeroName = "Viper",
                 Title = "Madame HYDRA"
 
             };
@@ -62,7 +62,7 @@ namespace LegendaryVillains
                 PrintedCost = 2,
                 PrintedAttackPoints = 1,
                 RulesText = "Return this card to the New Recruits Stack. Draw a Card. <i>(You still get this New Recruit's ATTACK.)</i>",
-                Subtitle = "Ally",
+                HeroName = "Ally",
                 Title = "New Recruits"
             };
         }

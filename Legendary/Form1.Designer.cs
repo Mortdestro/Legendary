@@ -42,6 +42,7 @@ namespace Legendary
             this.labelBystanderStack = new System.Windows.Forms.Label();
             this.labelStandardHeroes = new System.Windows.Forms.Label();
             this.labelPlayerDecks = new System.Windows.Forms.Label();
+            this.labelHeroDeck = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonSetUp
@@ -175,11 +176,22 @@ namespace Legendary
             this.labelPlayerDecks.TabIndex = 400;
             this.labelPlayerDecks.Text = "Player Decks";
             // 
+            // labelHeroDeck
+            // 
+            this.labelHeroDeck.AutoSize = true;
+            this.labelHeroDeck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHeroDeck.Location = new System.Drawing.Point(13, 293);
+            this.labelHeroDeck.Name = "labelHeroDeck";
+            this.labelHeroDeck.Size = new System.Drawing.Size(59, 13);
+            this.labelHeroDeck.TabIndex = 401;
+            this.labelHeroDeck.Text = "Hero Deck";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 614);
+            this.ClientSize = new System.Drawing.Size(800, 708);
+            this.Controls.Add(this.labelHeroDeck);
             this.Controls.Add(this.labelPlayerDecks);
             this.Controls.Add(this.labelStandardHeroes);
             this.Controls.Add(this.labelBystanderStack);
@@ -215,6 +227,7 @@ namespace Legendary
         private System.Windows.Forms.Label labelBystanderStack;
         private System.Windows.Forms.Label labelStandardHeroes;
         private System.Windows.Forms.Label labelPlayerDecks;
+        private System.Windows.Forms.Label labelHeroDeck;
     }
 }
 

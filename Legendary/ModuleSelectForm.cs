@@ -20,7 +20,7 @@ namespace Legendary
 
         public Module SelectedModule { get; set; }
 
-        public ModuleSelectForm()
+        private ModuleSelectForm()
         {
             InitializeComponent();
         }

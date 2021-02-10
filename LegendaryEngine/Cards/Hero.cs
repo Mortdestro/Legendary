@@ -6,13 +6,14 @@ namespace LegendaryEngine.Cards
 {
     public class Hero : Card
     {
-        public override string Subtitle { get; set; } = "Hero";
+        public override string Subtitle { get => HeroName; set => HeroName = value; }
         public override string Title { get; set; } = "Hero";
 
         public virtual Dictionary<string, Action<Hero, GameEngine, Player>> AdditionalActions { get; set; }
         public virtual Func<Hero, GameEngine, Player, float> AttackPoints { get; set; } = DefaultAttackPoints;
         public virtual Func<Hero, GameEngine, Player, List<string>> Classes { get; set; } = DefaultClasses;
         public virtual Func<Hero, GameEngine, Player, float> Cost { get; set; } = DefaultCost;
+        public virtual string HeroName { get; set; } = "Hero";
         public virtual Action<Hero, GameEngine, Player> Play { get; set; } = DefaultPlay;
         public virtual Func<Hero, GameEngine, Player, bool> PlayCondition { get; set; } = DefaultPlayCondition;
         public virtual float PrintedAttackPoints { get; set; }

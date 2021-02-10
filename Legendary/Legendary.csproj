@@ -46,11 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\FormattedLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeroCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HeroCard.Designer.cs">
+      <DependentUpon>HeroCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeroSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeroSelectForm.Designer.cs">
+      <DependentUpon>HeroSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ModuleSelectForm.cs">
       <SubType>Form</SubType>
@@ -62,6 +77,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeroCard.resx">
+      <DependentUpon>HeroCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeroSelectForm.resx">
+      <DependentUpon>HeroSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModuleSelectForm.resx">
       <DependentUpon>ModuleSelectForm.cs</DependentUpon>

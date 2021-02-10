@@ -22,6 +22,7 @@ namespace Legendary
         List<Label> BadCardLabels { get; set; }
         List<Label> StandardHeroLabels { get; set; }
         List<Label> PlayerDeckLabels { get; set; }
+        HeroCard HeroDeckTopCard { get; set; }
 
         public Form1()
         {
@@ -225,6 +226,29 @@ namespace Legendary
             {
                 Controls.Add(label);
             }
+
+            // Hero Deck //
+
+            int heroDeckLabelsStartX = playerDeckLabelsStartX;
+            int heroDeckLabelsStartY = playerDeckLabelsStartY + LABELS_SPACING_Y * (Game.Players.Count + 2);
+
+            labelHeroDeck.Location = new Point(heroDeckLabelsStartX, heroDeckLabelsStartY);
+
+            Card heroCard = Game.Board.HeroDeck[0];
+            if (heroCard is Hero hero)
+            {
+                HeroDeckTopCard = new HeroCard(hero)
+                {
+                    AutoSize = true,
+                    Location = new Point(heroDeckLabelsStartX, heroDeckLabelsStartY + LABELS_SPACING_Y),
+                    Name = $"heroDeckTopCard",
+                    TabIndex = 700 + offsetY / LABELS_SPACING_Y
+                };
+
+                HeroDeckTopCard.Click += new EventHandler(HeroDeckTopCard_Click);
+
+                Controls.Add(HeroDeckTopCard);
+            }
         }
 
         private void ClearLabels()
@@ -250,6 +274,9 @@ namespace Legendary
             }
             PlayerDeckLabels.Clear();
 
+            // Hero Deck
+            Controls.Remove(HeroDeckTopCard);
+
             labelBystanderStack.Text = "";
         }
 
@@ -269,6 +296,22 @@ namespace Legendary
             return module;
         }
 
+        public List<(Module module, string hero)> SelectHeroes(List<Module> modules, int? numHeroes, string title = "Hero Select", string prompt = "Select Heroes:")
+        {
+            List<(Module module, string hero)> heroes = null;
+
+            using (HeroSelectForm heroForm = new HeroSelectForm(modules, numHeroes, title, prompt))
+            {
+                DialogResult result = heroForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    heroes = heroForm.SelectedHeroes;
+                }
+            }
+
+            return heroes;
+        }
+
         private void ValidateSetUpButton()
         {
             buttonSetUp.Enabled = checkBoxHeroes.Checked || checkBoxVillains.Checked;
@@ -277,6 +320,14 @@ namespace Legendary
         private void buttonSetUp_Click(object sender, EventArgs e)
         {
             SetUpGame();
+            UpdateLabels();
+        }
+
+        private void HeroDeckTopCard_Click(object sender, EventArgs e)
+        {
+            Card card = Game.Board.HeroDeck[0];
+            Game.Board.HeroDeck.Remove(card);
+            Game.Board.HeroDeck.Add(card);
             UpdateLabels();
         }
 
