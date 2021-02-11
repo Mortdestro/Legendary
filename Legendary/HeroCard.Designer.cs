@@ -103,7 +103,7 @@ namespace Legendary
             // 
             this.labelRules.AutoSize = true;
             this.labelRules.Location = new System.Drawing.Point(53, 173);
-            this.labelRules.MaximumSize = new System.Drawing.Size(153, 34);
+            this.labelRules.MaximumSize = new System.Drawing.Size(165, 34);
             this.labelRules.Name = "labelRules";
             this.labelRules.Size = new System.Drawing.Size(54, 13);
             this.labelRules.TabIndex = 6;

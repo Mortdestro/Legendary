@@ -27,7 +27,7 @@ namespace Legendary
                 AutoSize = true,
                 //BorderStyle = BorderStyle.FixedSingle,
                 Location = new Point(58, 127),
-                MaximumSize = new Size(153, int.MaxValue),
+                MaximumSize = new Size(165, int.MaxValue),
                 Name = "labelRules",
                 Padding = new Padding(0),
                 TabIndex = 6

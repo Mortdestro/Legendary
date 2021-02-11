@@ -13,8 +13,8 @@ namespace Legendary.Controls
     {
         const string BoldStartTag = "<b>";
         const string BoldEndTag = "</b>";
-        const int PaddingAdjustment = -4;
-        const int PixelAdjustment = 1;
+        const int PaddingAdjustment = -10;
+        const int PixelAdjustment = 0;
 
         protected override void OnPaint(PaintEventArgs e)
         {
