@@ -44,7 +44,8 @@ namespace LegendaryEngine
         {
             PopulateStacks();
             PopulatePlayerDecks();
-            PopulateHeroes();
+            PopulateVillainDeck();
+            PopulateHeroDeck();
         }
 
         private void PopulateStacks()
@@ -104,7 +105,56 @@ namespace LegendaryEngine
             }
         }
 
-        private void PopulateHeroes()
+        // @TODO: Scheme Twists, Master Strikes, phases
+        private void PopulateVillainDeck()
+        {
+            int numVillains;
+            int numHenchmen;
+            int numBystanders;
+            switch (Players.Count)
+            {
+                case 2:
+                    numVillains = 2;
+                    numHenchmen = 1;
+                    numBystanders = 2;
+                    break;
+                case 3:
+                    numVillains = 3;
+                    numHenchmen = 1;
+                    numBystanders = 8;
+                    break;
+                case 4:
+                    numVillains = 3;
+                    numHenchmen = 2;
+                    numBystanders = 8;
+                    break;
+                case 5:
+                    numVillains = 4;
+                    numHenchmen = 2;
+                    numBystanders = 12;
+                    break;
+                default:
+                    throw new InvalidOperationException("Unsupported number of players");
+            }
+
+            List<(Module module, string villain)> villains = ui.SelectVillains(Modules, numVillains);
+            foreach ((Module module, string villain) in villains)
+            {
+                Board.VillainDeck.AddRange(module.Villains[villain]);
+            }
+
+            List<(Module module, string henchman)> henchmen = ui.SelectHenchmanVillains(Modules, numHenchmen);
+            foreach ((Module module, string henchman) in henchmen)
+            {
+                Board.VillainDeck.AddRange(module.HenchmanVillains[henchman]);
+            }
+
+            Board.VillainDeck.AddRange(Board.BystanderStack.Draw(numBystanders));
+
+            Board.VillainDeck.Shuffle();
+        }
+
+        private void PopulateHeroDeck()
         {
             int numHeroes = Players.Count == 5 ? 6 : 5;
             List<(Module module, string hero)> heroes = ui.SelectHeroes(Modules, numHeroes);

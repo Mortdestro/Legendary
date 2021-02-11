@@ -1,7 +1,7 @@
 ﻿
 namespace Legendary
 {
-    partial class HeroCard : CardControl
+    partial class VillainCard : CardControl
     {
         /// <summary> 
         /// Required designer variable.

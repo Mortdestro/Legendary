@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CardControl.Designer.cs">
+      <DependentUpon>CardControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FormattedLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -55,17 +61,29 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="BystanderCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BystanderCard.Designer.cs">
+      <DependentUpon>BystanderCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VillainCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VillainCard.Designer.cs">
+      <DependentUpon>VillainCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="HeroCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="HeroCard.Designer.cs">
       <DependentUpon>HeroCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="HeroSelectForm.cs">
+    <Compile Include="CardGroupSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HeroSelectForm.Designer.cs">
-      <DependentUpon>HeroSelectForm.cs</DependentUpon>
+    <Compile Include="CardGroupSelectForm.Designer.cs">
+      <DependentUpon>CardGroupSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ModuleSelectForm.cs">
       <SubType>Form</SubType>
@@ -75,14 +93,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CardControl.resx">
+      <DependentUpon>CardControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BystanderCard.resx">
+      <DependentUpon>BystanderCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VillainCard.resx">
+      <DependentUpon>VillainCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HeroCard.resx">
       <DependentUpon>HeroCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HeroSelectForm.resx">
-      <DependentUpon>HeroSelectForm.cs</DependentUpon>
+    <EmbeddedResource Include="CardGroupSelectForm.resx">
+      <DependentUpon>CardGroupSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModuleSelectForm.resx">
       <DependentUpon>ModuleSelectForm.cs</DependentUpon>

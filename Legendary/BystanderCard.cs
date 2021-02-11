@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace Legendary
 {
-    public partial class HeroCard : CardControl
+    public partial class BystanderCard : CardControl
     {
-        private readonly Hero Hero;
+        private readonly Bystander Hero;
 
-        private HeroCard() : base()
+        private BystanderCard() : base()
         {
             tableLayoutPanel.Controls.Remove(labelRules);
             labelRules = new FormattedLabel
@@ -33,7 +33,7 @@ namespace Legendary
             tableLayoutPanel.Controls.Add(labelRules, 1, 3);
         }
 
-        public HeroCard(Hero hero) : this()
+        public BystanderCard(Bystander hero) : this()
         {
             Hero = hero;
             UpdateLabels();
@@ -41,14 +41,14 @@ namespace Legendary
 
         public override void UpdateLabels()
         {
-            labelAttack.Text = Hero.PrintedAttackPoints.ToString();
-            labelClasses.Text = Hero.PrintedClasses.Aggregate((first, second) => first + "\r\n" + second);
-            labelCost.Text = Hero.PrintedCost.ToString();
+            labelAttack.Text = "";
+            labelClasses.Text = "";
+            labelCost.Text = "";
             labelFlavor.Text = Hero.FlavorText;
-            labelRecruit.Text = Hero.PrintedRecruitPoints.ToString();
+            labelRecruit.Text = "";
             labelRules.Text = Hero.RulesText;
             labelSubtitle.Text = Hero.Subtitle;
-            labelTeams.Text = Hero.PrintedTeams.Aggregate((first, second) => first + "\r\n" + second);
+            labelTeams.Text = "";
             labelTitle.Text = Hero.Title;
         }
     }

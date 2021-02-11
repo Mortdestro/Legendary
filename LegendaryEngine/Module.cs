@@ -11,9 +11,11 @@ namespace LegendaryEngine
         public string Name { get; set; }
         public Dictionary<string, List<BadCard>> BadCards { get; set; }
         public List<Bystander> Bystanders { get; set; }
+        public Dictionary<string, List<Villain>> HenchmanVillains { get; set; }
         public Dictionary<string, List<Hero>> Heroes { get; set; }
         public Dictionary<string, List<Hero>> StandardHeroes { get; set; }
         public List<Card> StartingCards { get; set; }
+        public Dictionary<string, List<Villain>> Villains { get; set; }
 
         public static Module Merge(List<Module> modules)
         {

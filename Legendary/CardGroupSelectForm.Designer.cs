@@ -1,7 +1,7 @@
 ﻿
 namespace Legendary
 {
-    partial class HeroSelectForm
+    partial class CardGroupSelectForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,9 +38,9 @@ namespace Legendary
             this.labelPrompt.AutoSize = true;
             this.labelPrompt.Location = new System.Drawing.Point(13, 13);
             this.labelPrompt.Name = "labelPrompt";
-            this.labelPrompt.Size = new System.Drawing.Size(77, 13);
+            this.labelPrompt.Size = new System.Drawing.Size(40, 13);
             this.labelPrompt.TabIndex = 0;
-            this.labelPrompt.Text = "Select Heroes:";
+            this.labelPrompt.Text = "Select:";
             // 
             // buttonOk
             // 
@@ -53,7 +53,7 @@ namespace Legendary
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
-            // HeroSelectForm
+            // CardGroupSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -61,8 +61,8 @@ namespace Legendary
             this.ControlBox = false;
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.labelPrompt);
-            this.Name = "HeroSelectForm";
-            this.Text = "Hero Select";
+            this.Name = "CardGroupSelectForm";
+            this.Text = "Card Group Select";
             this.ResumeLayout(false);
             this.PerformLayout();
 

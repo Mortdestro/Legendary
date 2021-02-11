@@ -17,6 +17,10 @@ namespace LegendaryHeroes
                 { "Wound", Enumerable.Repeat(BadCards.CreateWound(), 30).ToList() }
             },
             Bystanders = Enumerable.Repeat(Bystanders.CreateBystander(), 30).ToList(),
+            HenchmanVillains = new Dictionary<string, List<Villain>>
+            {
+                { "Sentinel", Enumerable.Repeat(Villains.CreateSentinel(), 10).ToList() }
+            },
             Heroes = new Dictionary<string, List<Hero>>
             {
                 { "Captain America", new List<Hero>() { Heroes.CreateCaptainAmericaADayLikeAnyOther() }
@@ -54,8 +58,29 @@ namespace LegendaryHeroes
             {
                 { "S.H.I.E.L.D. Officer", Enumerable.Repeat(Heroes.CreateShieldOfficer(), 30).ToList() }
             },
-            StartingCards = Enumerable.Repeat<Card>(Heroes.CreateShieldAgent(), 8).ToList()
-                .Concat(Enumerable.Repeat<Card>(Heroes.CreateShieldTrooper(), 4)).ToList()
+            StartingCards = Enumerable.Repeat<Card>(Heroes.CreateShieldAgent(), 8)
+                .Concat(Enumerable.Repeat<Card>(Heroes.CreateShieldTrooper(), 4))
+                .ToList(),
+            Villains = new Dictionary<string, List<Villain>>
+            {
+                { "HYDRA", new List<Villain> { Villains.CreateSupremeHydra(), Villains.CreateViper() }
+                    .Concat(Enumerable.Repeat(Villains.CreateEndlessArmiesOfHydra(), 3))
+                    .Concat(Enumerable.Repeat(Villains.CreateHydraKidnappers(), 3))
+                    .ToList()
+                },
+                { "Spider-Foes", new List<Villain>()
+                    .Concat(Enumerable.Repeat(Villains.CreateGreenGoblin(), 2))
+                    .Concat(Enumerable.Repeat(Villains.CreateVenom(), 2 ))
+                    .Concat(Enumerable.Repeat(Villains.CreateDoctorOctopus(), 2))
+                    .Concat(Enumerable.Repeat(Villains.CreateTheLizard(), 2))
+                    .ToList()
+                },
+                { "Skrulls", new List<Villain> { Villains.CreateSkrullQueenVeranke(), Villains.CreatePaibokThePowerSkrull() }
+                    .Concat(Enumerable.Repeat(Villains.CreateSuperSkrull(), 3))
+                    .Concat(Enumerable.Repeat(Villains.CreateSkrullShapeshifters(), 3))
+                    .ToList()
+                }
+            }
         };
     }
 }

@@ -12,7 +12,8 @@ namespace Legendary
 {
     public partial class Form1 : Form, ILegendaryInterface
     {
-        const int BAD_CARD_LABELS_START_X = 13;
+        const int COLUMN1_X = 13;
+        const int COLUMN2_X = 424;
         const int BAD_CARD_LABELS_START_Y = 243;
         const int LABELS_SPACING_X = 100;
         const int LABELS_SPACING_Y = 25;
@@ -22,7 +23,8 @@ namespace Legendary
         List<Label> BadCardLabels { get; set; }
         List<Label> StandardHeroLabels { get; set; }
         List<Label> PlayerDeckLabels { get; set; }
-        HeroCard HeroDeckTopCard { get; set; }
+        CardControl HeroDeckTopCard { get; set; }
+        CardControl VillainDeckTopCard { get; set; }
 
         public Form1()
         {
@@ -91,7 +93,7 @@ namespace Legendary
                 BadCardLabels.Add(new Label
                 {
                     AutoSize = true,
-                    Location = new Point(BAD_CARD_LABELS_START_X, BAD_CARD_LABELS_START_Y + offsetY),
+                    Location = new Point(COLUMN1_X, BAD_CARD_LABELS_START_Y + offsetY),
                     Name = $"labelBadCards{type}",
                     TabIndex = 100 + offsetY / LABELS_SPACING_Y,
                     Text = type
@@ -111,7 +113,7 @@ namespace Legendary
                 {
                     AutoSize = true,
                     Font = new Font(FontFamily.GenericMonospace, STACK_LABEL_FONT_POINT),
-                    Location = new Point(BAD_CARD_LABELS_START_X + LABELS_SPACING_X, BAD_CARD_LABELS_START_Y + offsetY),
+                    Location = new Point(COLUMN1_X + LABELS_SPACING_X, BAD_CARD_LABELS_START_Y + offsetY),
                     Name = $"labelBadCards{type}Stack",
                     TabIndex = 200 + offsetY / LABELS_SPACING_Y,
                     Text = cards
@@ -127,7 +129,7 @@ namespace Legendary
 
             // Standard Heroes //
 
-            int standardHeroLabelsStartX = BAD_CARD_LABELS_START_X;
+            int standardHeroLabelsStartX = COLUMN1_X;
             int standardHeroLabelsStartY = BAD_CARD_LABELS_START_Y + LABELS_SPACING_Y * (Game.Board.BadCardStacks.Keys.Count);
 
             labelStandardHeroes.Location = new Point(standardHeroLabelsStartX, standardHeroLabelsStartY);
@@ -178,7 +180,7 @@ namespace Legendary
 
             // Player Decks //
 
-            int playerDeckLabelsStartX = standardHeroLabelsStartX;
+            int playerDeckLabelsStartX = COLUMN1_X;
             int playerDeckLabelsStartY = standardHeroLabelsStartY + LABELS_SPACING_Y * (Game.Board.StandardHeroStacks.Keys.Count + 1);
 
             labelPlayerDecks.Location = new Point(playerDeckLabelsStartX, playerDeckLabelsStartY);
@@ -229,12 +231,14 @@ namespace Legendary
 
             // Hero Deck //
 
-            int heroDeckLabelsStartX = playerDeckLabelsStartX;
+            int heroDeckLabelsStartX = COLUMN1_X;
             int heroDeckLabelsStartY = playerDeckLabelsStartY + LABELS_SPACING_Y * (Game.Players.Count + 2);
 
             labelHeroDeck.Location = new Point(heroDeckLabelsStartX, heroDeckLabelsStartY);
 
             Card heroCard = Game.Board.HeroDeck[0];
+
+            Controls.Remove(HeroDeckTopCard);
             if (heroCard is Hero hero)
             {
                 HeroDeckTopCard = new HeroCard(hero)
@@ -244,11 +248,46 @@ namespace Legendary
                     Name = $"heroDeckTopCard",
                     TabIndex = 700 + offsetY / LABELS_SPACING_Y
                 };
-
-                HeroDeckTopCard.Click += new EventHandler(HeroDeckTopCard_Click);
-
-                Controls.Add(HeroDeckTopCard);
             }
+
+            HeroDeckTopCard.Click += new EventHandler(HeroDeckTopCard_Click);
+
+            Controls.Add(HeroDeckTopCard);
+
+            // Villain Deck //
+
+            int villainDeckLabelsStartX = COLUMN2_X;
+            int villainDeckLabelsStartY = heroDeckLabelsStartY;
+
+            labelVillainDeck.Location = new Point(villainDeckLabelsStartX, villainDeckLabelsStartY);
+
+            Card villainCard = Game.Board.VillainDeck[0];
+
+            Controls.Remove(VillainDeckTopCard);
+            if (villainCard is Villain villain)
+            {
+                VillainDeckTopCard = new VillainCard(villain)
+                {
+                    AutoSize = true,
+                    Location = new Point(villainDeckLabelsStartX, villainDeckLabelsStartY + LABELS_SPACING_Y),
+                    Name = $"villainDeckTopCard",
+                    TabIndex = 700 + offsetY / LABELS_SPACING_Y
+                };
+            }
+            else if (villainCard is Bystander bystander)
+            {
+                VillainDeckTopCard = new BystanderCard(bystander)
+                {
+                    AutoSize = true,
+                    Location = new Point(villainDeckLabelsStartX, villainDeckLabelsStartY + LABELS_SPACING_Y),
+                    Name = $"villainDeckTopCard",
+                    TabIndex = 700 + offsetY / LABELS_SPACING_Y
+                };
+            }
+
+            VillainDeckTopCard.Click += new EventHandler(VillainDeckTopCard_Click);
+
+            Controls.Add(VillainDeckTopCard);
         }
 
         private void ClearLabels()
@@ -296,20 +335,52 @@ namespace Legendary
             return module;
         }
 
-        public List<(Module module, string hero)> SelectHeroes(List<Module> modules, int? numHeroes, string title = "Hero Select", string prompt = "Select Heroes:")
+        public List<(Module module, string hero)> SelectHeroes(List<Module> modules, int? numHeroes, string prompt = "Select Heroes:")
         {
             List<(Module module, string hero)> heroes = null;
 
-            using (HeroSelectForm heroForm = new HeroSelectForm(modules, numHeroes, title, prompt))
+            using (CardGroupSelectForm heroForm = new CardGroupSelectForm(modules, CardGroupSelectForm.GroupType.Hero, numHeroes, "Hero Select", prompt))
             {
                 DialogResult result = heroForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    heroes = heroForm.SelectedHeroes;
+                    heroes = heroForm.SelectedGroups;
                 }
             }
 
             return heroes;
+        }
+
+        public List<(Module module, string villain)> SelectVillains(List<Module> modules, int? numVillains, string prompt = "Select Villains:")
+        {
+            List<(Module module, string villain)> villains = null;
+
+            using (CardGroupSelectForm villainForm = new CardGroupSelectForm(modules, CardGroupSelectForm.GroupType.Villain, numVillains, "Villain Select", prompt))
+            {
+                DialogResult result = villainForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    villains = villainForm.SelectedGroups;
+                }
+            }
+
+            return villains;
+        }
+
+        public List<(Module module, string henchman)> SelectHenchmanVillains(List<Module> modules, int? numVillains, string prompt = "Select Henchman Villains:")
+        {
+            List<(Module module, string henchman)> villains = null;
+
+            using (CardGroupSelectForm villainForm = new CardGroupSelectForm(modules, CardGroupSelectForm.GroupType.Henchman, numVillains, "Henchman Villain Select", prompt))
+            {
+                DialogResult result = villainForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    villains = villainForm.SelectedGroups;
+                }
+            }
+
+            return villains;
         }
 
         private void ValidateSetUpButton()
@@ -325,8 +396,14 @@ namespace Legendary
 
         private void HeroDeckTopCard_Click(object sender, EventArgs e)
         {
-            Card card = Game.Board.HeroDeck[0];
-            Game.Board.HeroDeck.Remove(card);
+            Card card = Game.Board.HeroDeck.Draw();
+            Game.Board.HeroDeck.Add(card);
+            UpdateLabels();
+        }
+
+        private void VillainDeckTopCard_Click(object sender, EventArgs e)
+        {
+            Card card = Game.Board.VillainDeck.Draw();
             Game.Board.HeroDeck.Add(card);
             UpdateLabels();
         }
