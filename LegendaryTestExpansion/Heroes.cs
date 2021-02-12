@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegendaryTestExpansion
 {
-    public class Heroes
+    public static class Heroes
     {
         public static Hero CreateHeroX()
         {

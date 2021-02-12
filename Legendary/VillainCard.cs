@@ -41,11 +41,11 @@ namespace Legendary
 
         public override void UpdateLabels()
         {
-            labelAttack.Text = Villain.PrintedAttackPoints.ToString();
+            labelAttack.Text = "";
             labelClasses.Text = "";
-            labelCost.Text = "";
+            labelCost.Text = Villain.PrintedAttackPoints.ToString();
             labelFlavor.Text = Villain.FlavorText;
-            labelRecruit.Text = "";
+            labelRecruit.Text = Villain.PrintedVictoryPoints.ToString();
             labelRules.Text = Villain.RulesText;
             labelSubtitle.Text = Villain.Subtitle;
             labelTeams.Text = "";

@@ -44,6 +44,8 @@ namespace Legendary
             this.labelPlayerDecks = new System.Windows.Forms.Label();
             this.labelHeroDeck = new System.Windows.Forms.Label();
             this.labelVillainDeck = new System.Windows.Forms.Label();
+            this.labelScheme = new System.Windows.Forms.Label();
+            this.labelSchemeCard = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonSetUp
@@ -197,11 +199,30 @@ namespace Legendary
             this.labelVillainDeck.TabIndex = 402;
             this.labelVillainDeck.Text = "Villain Deck";
             // 
+            // labelScheme
+            // 
+            this.labelScheme.AutoSize = true;
+            this.labelScheme.Location = new System.Drawing.Point(13, 168);
+            this.labelScheme.Name = "labelScheme";
+            this.labelScheme.Size = new System.Drawing.Size(46, 13);
+            this.labelScheme.TabIndex = 403;
+            this.labelScheme.Text = "Scheme";
+            // 
+            // labelSchemeCard
+            // 
+            this.labelSchemeCard.AutoSize = true;
+            this.labelSchemeCard.Location = new System.Drawing.Point(113, 168);
+            this.labelSchemeCard.Name = "labelSchemeCard";
+            this.labelSchemeCard.Size = new System.Drawing.Size(0, 13);
+            this.labelSchemeCard.TabIndex = 404;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 708);
+            this.Controls.Add(this.labelSchemeCard);
+            this.Controls.Add(this.labelScheme);
             this.Controls.Add(this.labelVillainDeck);
             this.Controls.Add(this.labelHeroDeck);
             this.Controls.Add(this.labelPlayerDecks);
@@ -241,6 +262,8 @@ namespace Legendary
         private System.Windows.Forms.Label labelPlayerDecks;
         private System.Windows.Forms.Label labelHeroDeck;
         private System.Windows.Forms.Label labelVillainDeck;
+        private System.Windows.Forms.Label labelScheme;
+        private System.Windows.Forms.Label labelSchemeCard;
     }
 }
 

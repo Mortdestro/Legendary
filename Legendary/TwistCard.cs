@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace Legendary
 {
-    public partial class BystanderCard : CardControl
+    public partial class TwistCard : CardControl
     {
-        private readonly Bystander Bystander;
+        private readonly Twist Twist;
 
-        private BystanderCard() : base()
+        private TwistCard() : base()
         {
             tableLayoutPanel.Controls.Remove(labelRules);
             labelRules = new FormattedLabel
@@ -33,9 +33,9 @@ namespace Legendary
             tableLayoutPanel.Controls.Add(labelRules, 1, 3);
         }
 
-        public BystanderCard(Bystander bystander) : this()
+        public TwistCard(Twist twist) : this()
         {
-            Bystander = bystander;
+            Twist = twist;
             UpdateLabels();
         }
 
@@ -44,12 +44,12 @@ namespace Legendary
             labelAttack.Text = "";
             labelClasses.Text = "";
             labelCost.Text = "";
-            labelFlavor.Text = Bystander.FlavorText;
-            labelRecruit.Text = Bystander.PrintedVictoryPoints.ToString();
-            labelRules.Text = Bystander.RulesText;
-            labelSubtitle.Text = Bystander.Subtitle;
+            labelFlavor.Text = Twist.FlavorText;
+            labelRecruit.Text = "";
+            labelRules.Text = Twist.RulesText;
+            labelSubtitle.Text = Twist.Subtitle;
             labelTeams.Text = "";
-            labelTitle.Text = Bystander.Title;
+            labelTitle.Text = Twist.Title;
         }
     }
 }

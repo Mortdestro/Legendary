@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LegendaryVillains
 {
-    public class Heroes
+    public static class Heroes
     {
         public static Hero CreateHydraOperative()
         {

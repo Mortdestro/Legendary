@@ -9,9 +9,12 @@ namespace LegendaryEngine
     public class GameEngine
     {
         public List<Module> Modules { get; }
+        public Module CardModule { get; private set; }
         public List<Player> Players { get; }
         public Turn CurrentTurn { get; }
         public Board Board { get; }
+        public int MasterStrikes { get; private set; }
+        public int Twists { get; private set; }
 
         private readonly ILegendaryInterface ui;
 
@@ -44,8 +47,15 @@ namespace LegendaryEngine
         {
             PopulateStacks();
             PopulatePlayerDecks();
+            PopulateScheme();
             PopulateVillainDeck();
             PopulateHeroDeck();
+        }
+
+        public void Twist()
+        {
+            // Eventually, there will be event listeners
+            Twists++;
         }
 
         private void PopulateStacks()
@@ -94,15 +104,20 @@ namespace LegendaryEngine
                 throw new InvalidOperationException("No module with starting cards selected.");
             }
 
-            Module module = baseModules.Count == 1 ?
+            CardModule = baseModules.Count == 1 ?
                 baseModules[0] :
-                ui.SelectModule(baseModules, "Starting Player Decks", "Which starting player decks should be used?");
+                ui.SelectModule(baseModules, "Which starting player decks should be used?");
 
             foreach (Player player in Players)
             {
-                player.Deck.AddRange(module.StartingCards);
+                player.Deck.AddRange(CardModule.StartingCards);
                 player.Deck.Shuffle();
             }
+        }
+
+        private void PopulateScheme()
+        {
+            Board.Scheme = ui.SelectScheme(Modules);
         }
 
         // @TODO: Scheme Twists, Master Strikes, phases
@@ -150,6 +165,10 @@ namespace LegendaryEngine
             }
 
             Board.VillainDeck.AddRange(Board.BystanderStack.Draw(numBystanders));
+
+            List<Card> twists = new List<Card>().Concat(CardModule.Twists).ToList();
+            twists.Shuffle();
+            Board.VillainDeck.AddRange(twists.Draw(Board.Scheme.Twists));
 
             Board.VillainDeck.Shuffle();
         }

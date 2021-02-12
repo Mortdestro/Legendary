@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegendaryHeroes
 {
-    public class Heroes
+    public static class Heroes
     {
         #region SHIELD
         public static Hero CreateShieldAgent()

@@ -74,7 +74,6 @@ namespace Legendary
                         Name = $"labelModule{module.Name.Replace(" ", "")}",
                         Size = new Size(85, 17),
                         TabIndex = COMPONENT_TAB_START + i,
-                        TabStop = true,
                         Text = module.Name
                     };
 

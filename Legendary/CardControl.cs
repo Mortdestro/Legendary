@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Legendary
 {
-    public abstract partial class CardControl : UserControl
+    public partial class CardControl : UserControl
     {
         public CardControl()
         {
@@ -18,7 +18,7 @@ namespace Legendary
             WireAllControls(this);
         }
 
-        public abstract void UpdateLabels();
+        public virtual void UpdateLabels() { }
 
         protected virtual void WireAllControls(Control cont)
         {

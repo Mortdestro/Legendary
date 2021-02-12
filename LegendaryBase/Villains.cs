@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegendaryHeroes
 {
-    public class Villains
+    public static class Villains
     {
         #region HYDRA
         public static Villain CreateSupremeHydra()

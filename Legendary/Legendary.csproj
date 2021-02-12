@@ -67,6 +67,18 @@
     <Compile Include="BystanderCard.Designer.cs">
       <DependentUpon>BystanderCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="TwistCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TwistCard.Designer.cs">
+      <DependentUpon>TwistCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SchemeSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SchemeSelectForm.Designer.cs">
+      <DependentUpon>SchemeSelectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VillainCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +113,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BystanderCard.resx">
       <DependentUpon>BystanderCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TwistCard.resx">
+      <DependentUpon>TwistCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SchemeSelectForm.resx">
+      <DependentUpon>SchemeSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VillainCard.resx">
       <DependentUpon>VillainCard.cs</DependentUpon>

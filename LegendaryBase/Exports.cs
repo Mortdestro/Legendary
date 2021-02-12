@@ -28,31 +28,35 @@ namespace LegendaryHeroes
                     .Concat(Enumerable.Repeat(Heroes.CreateCaptainAmericaPerfectTeamwork(), 5))
                     .Concat(Enumerable.Repeat(Heroes.CreateCaptainAmericaAvengersAssemble(), 5))
                     .ToList()
-                    },
+                },
                 { "Cyclops", new List<Hero>() { Heroes.CreateCyclopsXMenUnited() }
                     .Concat(Enumerable.Repeat(Heroes.CreateCyclopsUnendingEnergy(), 3))
                     .Concat(Enumerable.Repeat(Heroes.CreateCyclopsOpticBlast(), 5))
                     .Concat(Enumerable.Repeat(Heroes.CreateCyclopsDetermination(), 5))
                     .ToList()
-                    },
+                },
                 { "Hawkeye", new List<Hero>() { Heroes.CreateHawkeyeImpossibleTrickShot() }
                     .Concat(Enumerable.Repeat(Heroes.CreateHawkeyeCoveringFire(), 3))
                     .Concat(Enumerable.Repeat(Heroes.CreateHawkeyeTeamPlayer(), 5))
                     .Concat(Enumerable.Repeat(Heroes.CreateHawkeyeQuickDraw(), 5))
                     .ToList()
-                    },
+                },
                 { "Iron Man", new List<Hero>() { Heroes.CreateIronManQuantumBreakthrough() }
                     .Concat(Enumerable.Repeat(Heroes.CreateIronManArcReactor(), 3))
                     .Concat(Enumerable.Repeat(Heroes.CreateIronManRepulsorRays(), 5))
                     .Concat(Enumerable.Repeat(Heroes.CreateIronManEndlessInvention(), 5))
                     .ToList()
-                    },
+                },
                 { "Spider-Man", new List<Hero>() { Heroes.CreateSpiderManTheAmazingSpiderMan() }
                     .Concat(Enumerable.Repeat(Heroes.CreateSpiderManWebShooters(), 3))
                     .Concat(Enumerable.Repeat(Heroes.CreateSpiderManGreatResponsibility(), 5))
                     .Concat(Enumerable.Repeat(Heroes.CreateSpiderManAstonishingStrength(), 5))
                     .ToList()
-                    }
+                }
+            },
+            Schemes = new List<Scheme>
+            {
+                Schemes.CreateUnleashThePowerOfTheCosmicCube()
             },
             StandardHeroes = new Dictionary<string, List<Hero>>
             {
@@ -61,6 +65,7 @@ namespace LegendaryHeroes
             StartingCards = Enumerable.Repeat<Card>(Heroes.CreateShieldAgent(), 8)
                 .Concat(Enumerable.Repeat<Card>(Heroes.CreateShieldTrooper(), 4))
                 .ToList(),
+            Twists = Enumerable.Repeat(Twists.CreateSchemeTwist(), 11).ToList(),
             Villains = new Dictionary<string, List<Villain>>
             {
                 { "HYDRA", new List<Villain> { Villains.CreateSupremeHydra(), Villains.CreateViper() }

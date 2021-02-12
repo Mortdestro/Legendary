@@ -1,7 +1,7 @@
 ﻿
 namespace Legendary
 {
-    abstract partial class CardControl
+    partial class CardControl
     {
         /// <summary> 
         /// Required designer variable.

@@ -68,6 +68,9 @@ namespace Legendary
         {
             ClearLabels();
 
+            // Scheme //
+            labelSchemeCard.Text = Game.Board.Scheme.Title;
+
             string cards;
 
             // Bystanders //
@@ -284,6 +287,16 @@ namespace Legendary
                     TabIndex = 700 + offsetY / LABELS_SPACING_Y
                 };
             }
+            else if (villainCard is Twist twist)
+            {
+                VillainDeckTopCard = new TwistCard(twist)
+                {
+                    AutoSize = true,
+                    Location = new Point(villainDeckLabelsStartX, villainDeckLabelsStartY + LABELS_SPACING_Y),
+                    Name = $"villainDeckTopCard",
+                    TabIndex = 700 + offsetY / LABELS_SPACING_Y
+                };
+            }
 
             VillainDeckTopCard.Click += new EventHandler(VillainDeckTopCard_Click);
 
@@ -316,14 +329,18 @@ namespace Legendary
             // Hero Deck
             Controls.Remove(HeroDeckTopCard);
 
+            // Villain Deck
+            Controls.Remove(VillainDeckTopCard);
+
+            labelSchemeCard.Text = "";
             labelBystanderStack.Text = "";
         }
 
-        public Module SelectModule(List<Module> modules, string title = "Marvel Legendary - Expansions", string prompt = "Select an expansion:")
+        public Module SelectModule(List<Module> modules, string prompt = "Select an expansion:")
         {
             Module module = null;
 
-            using (ModuleSelectForm moduleForm = new ModuleSelectForm(modules, title, prompt))
+            using (ModuleSelectForm moduleForm = new ModuleSelectForm(modules, "Marvel Legendary - Expansions", prompt))
             {
                 DialogResult result = moduleForm.ShowDialog();
                 if (result == DialogResult.OK)
@@ -335,20 +352,20 @@ namespace Legendary
             return module;
         }
 
-        public List<(Module module, string hero)> SelectHeroes(List<Module> modules, int? numHeroes, string prompt = "Select Heroes:")
+        public Scheme SelectScheme(List<Module> modules, string prompt = "Select a Scheme:")
         {
-            List<(Module module, string hero)> heroes = null;
+            Scheme scheme = null;
 
-            using (CardGroupSelectForm heroForm = new CardGroupSelectForm(modules, CardGroupSelectForm.GroupType.Hero, numHeroes, "Hero Select", prompt))
+            using (SchemeSelectForm schemeForm = new SchemeSelectForm(modules, "Marvel Legendary - Expansions", prompt))
             {
-                DialogResult result = heroForm.ShowDialog();
+                DialogResult result = schemeForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    heroes = heroForm.SelectedGroups;
+                    scheme = schemeForm.SelectedScheme;
                 }
             }
 
-            return heroes;
+            return scheme;
         }
 
         public List<(Module module, string villain)> SelectVillains(List<Module> modules, int? numVillains, string prompt = "Select Villains:")
@@ -381,6 +398,22 @@ namespace Legendary
             }
 
             return villains;
+        }
+
+        public List<(Module module, string hero)> SelectHeroes(List<Module> modules, int? numHeroes, string prompt = "Select Heroes:")
+        {
+            List<(Module module, string hero)> heroes = null;
+
+            using (CardGroupSelectForm heroForm = new CardGroupSelectForm(modules, CardGroupSelectForm.GroupType.Hero, numHeroes, "Hero Select", prompt))
+            {
+                DialogResult result = heroForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    heroes = heroForm.SelectedGroups;
+                }
+            }
+
+            return heroes;
         }
 
         private void ValidateSetUpButton()

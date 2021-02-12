@@ -29,7 +29,6 @@ namespace Legendary
         /// </summary>
         protected override void InitializeComponent()
         {
-            base.InitializeComponent();
             this.labelTeams = new System.Windows.Forms.Label();
             this.labelClasses = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();

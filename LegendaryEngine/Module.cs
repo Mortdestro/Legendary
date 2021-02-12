@@ -13,6 +13,8 @@ namespace LegendaryEngine
         public List<Bystander> Bystanders { get; set; }
         public Dictionary<string, List<Villain>> HenchmanVillains { get; set; }
         public Dictionary<string, List<Hero>> Heroes { get; set; }
+        public List<Scheme> Schemes { get; set; }
+        public List<Twist> Twists { get; set; }
         public Dictionary<string, List<Hero>> StandardHeroes { get; set; }
         public List<Card> StartingCards { get; set; }
         public Dictionary<string, List<Villain>> Villains { get; set; }
@@ -29,7 +31,8 @@ namespace LegendaryEngine
             {
                 BadCards = MergeStacks(modules.Select(module => module.BadCards).ToList()),
                 Bystanders = MergeStack(modules.Select(module => module.Bystanders).ToList()),
-                StandardHeroes = MergeStacks(modules.Select(module => module.StandardHeroes).ToList())
+                StandardHeroes = MergeStacks(modules.Select(module => module.StandardHeroes).ToList()),
+                Twists = MergeStack(modules.Select(module => module.Twists).ToList())
             };
 
             return mergedModules;

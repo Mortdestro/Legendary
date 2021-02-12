@@ -25,6 +25,8 @@ namespace LegendaryEngine
 
         public static Card Draw(this IList<Card> deck)
         {
+            if (deck.Count <= 0) return null;
+
             Card card = deck[0];
             deck.RemoveAt(0);
             return card;
